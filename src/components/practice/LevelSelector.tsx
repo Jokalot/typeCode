@@ -30,18 +30,18 @@ export function LevelSelector({ language, onSelectExercise }: Props) {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto px-0">
 
       {/* ── Header ── */}
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
         <div
-          className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+          className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0"
           style={{
             background: `linear-gradient(135deg, ${language.accentColor}20, ${language.accentColor}05)`,
             border: `1px solid ${language.accentColor}40`,
           }}
         >
-          <LanguageIcon name={language.icon} size={34} />
+          <LanguageIcon name={language.icon} size={28} />
         </div>
         <div className="flex-1">
           <h2 className="text-xl font-bold tracking-tight" style={{ color: 'var(--foreground)' }}>
@@ -60,14 +60,14 @@ export function LevelSelector({ language, onSelectExercise }: Props) {
       </div>
 
       {/* ── Level tabs ── */}
-      <div className="flex gap-1.5 mb-6 p-1 rounded-xl" style={{ background: 'var(--muted)' }}>
+      <div className="flex gap-1.5 mb-4 sm:mb-6 p-1 rounded-xl overflow-x-auto scrollbar-none" style={{ background: 'var(--muted)', WebkitOverflowScrolling: 'touch' }}>
         {language.levels.map((lvl, i) => {
           const isActive = activeTab === i;
           return (
             <button
               key={lvl.id}
               onClick={() => setActiveTab(i)}
-              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-xs font-medium transition-all duration-200"
+              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-lg text-xs font-medium transition-all duration-200 whitespace-nowrap min-w-[80px]"
               style={{
                 background: isActive ? 'var(--card)' : 'transparent',
                 color: isActive ? 'var(--foreground)' : 'var(--muted-foreground)',

@@ -117,8 +117,8 @@ export function PracticeClient({ language }: Props) {
   // ── STATE 1: Selector de niveles ──
   if (!active) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-6 flex items-center gap-3">
+      <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
+        <div className="mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
           <Button variant="ghost" size="sm" onClick={() => router.push('/')} className="gap-1">
             <ChevronLeft className="w-4 h-4" />
             Lenguajes
@@ -138,9 +138,9 @@ export function PracticeClient({ language }: Props) {
 
   // ── STATE 2: Ejercicio activo ──
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
       {/* Breadcrumb */}
-      <div className="mb-4 flex items-center gap-2 text-xs text-muted-foreground">
+      <div className="mb-3 sm:mb-4 flex items-center gap-1.5 sm:gap-2 text-xs text-muted-foreground flex-wrap">
         <button onClick={handleBackToMap} className="hover:text-foreground transition-colors">
           {language.name}
         </button>
@@ -176,7 +176,7 @@ export function PracticeClient({ language }: Props) {
 
       {result && (
         <div
-          className="mt-6 rounded-xl p-5 flex items-center justify-between"
+          className="mt-4 sm:mt-6 rounded-xl p-3 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0"
           style={{ background: 'var(--card)', border: '1px solid var(--border)' }}
         >
           <div className="flex items-center gap-3">
@@ -198,7 +198,7 @@ export function PracticeClient({ language }: Props) {
               </p>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 w-full sm:w-auto">
             <Button variant="outline" size="sm" onClick={handleBackToMap}>
               ← Mapa
             </Button>

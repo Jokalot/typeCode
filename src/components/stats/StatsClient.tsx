@@ -18,10 +18,10 @@ export function StatsClient() {
     const langs = [...new Set(sessions.map(s => s.language))];
 
     return (
-        <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-4xl">
 
             {/* Header */}
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-3">
                 <div className="flex items-center gap-3">
                     <Button variant="ghost" size="sm" onClick={() => router.push('/')} className="gap-1">
                         <ChevronLeft className="w-4 h-4" />
@@ -33,7 +33,7 @@ export function StatsClient() {
                     </div>
                 </div>
                 {sessions.length > 0 && (
-                    <Button variant="outline" size="sm" onClick={clearSessions} className="gap-2 text-destructive hover:text-destructive">
+                    <Button variant="outline" size="sm" onClick={clearSessions} className="gap-2 text-destructive hover:text-destructive w-full sm:w-auto">
                         <Trash2 className="w-4 h-4" />
                         Limpiar historial
                     </Button>
@@ -54,7 +54,7 @@ export function StatsClient() {
                 <div className="flex flex-col gap-6">
 
                     {/* Cards de resumen */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-4">
                         {[
                             { icon: TrendingUp, label: 'Mejor WPM', value: stats.bestWpm, color: 'var(--chart-1)', unit: 'wpm' },
                             { icon: Target, label: 'Precisión promedio', value: `${stats.avgAccuracy}%`, color: 'var(--chart-4)' },
@@ -63,12 +63,12 @@ export function StatsClient() {
                         ].map((s, i) => {
                             const Icon = s.icon;
                             return (
-                                <div key={i} className="bg-card border border-border rounded-xl p-5">
-                                    <div className="flex items-center justify-between mb-3">
+                                <div key={i} className="bg-card border border-border rounded-xl p-3 sm:p-5">
+                                    <div className="flex items-center justify-between mb-2 sm:mb-3">
                                         <p className="text-xs text-muted-foreground">{s.label}</p>
                                         <Icon className="w-4 h-4" style={{ color: s.color }} />
                                     </div>
-                                    <p className="text-3xl font-bold font-mono" style={{ color: s.color }}>{s.value}</p>
+                                    <p className="text-xl sm:text-3xl font-bold font-mono" style={{ color: s.color }}>{s.value}</p>
                                 </div>
                             );
                         })}
@@ -76,7 +76,7 @@ export function StatsClient() {
 
                     {/* Gráfica WPM */}
                     {recent.length > 1 && (
-                        <div className="bg-card border border-border rounded-xl p-6">
+                        <div className="bg-card border border-border rounded-xl p-4 sm:p-6">
                             <h2 className="text-sm font-semibold mb-5">Progreso de WPM</h2>
                             <div className="flex items-end gap-1.5 h-32">
                                 {recent.map((s, i) => {
@@ -108,7 +108,7 @@ export function StatsClient() {
 
                     {/* Por lenguaje */}
                     {langs.length > 0 && (
-                        <div className="bg-card border border-border rounded-xl p-6">
+                        <div className="bg-card border border-border rounded-xl p-4 sm:p-6">
                             <h2 className="text-sm font-semibold mb-4">Por lenguaje</h2>
                             <div className="flex flex-col gap-3">
                                 {langs.map(lang => {
@@ -116,7 +116,7 @@ export function StatsClient() {
                                     const bestWpm = Math.max(...langSessions.map(s => s.wpm));
                                     const avgAcc = Math.round(langSessions.reduce((sum, s) => sum + s.accuracy, 0) / langSessions.length);
                                     return (
-                                        <div key={lang} className="flex items-center gap-4 p-3 rounded-lg"
+                                        <div key={lang} className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 p-3 rounded-lg"
                                             style={{ background: 'var(--muted)' }}>
                                             <LanguageIcon name={lang.toLowerCase()} size={28} />
                                             <div className="flex-1">
@@ -124,7 +124,7 @@ export function StatsClient() {
                                                     <span className="text-sm font-medium">{lang}</span>
                                                     <span className="text-xs text-muted-foreground">{langSessions.length} sesiones</span>
                                                 </div>
-                                                <div className="flex gap-4 mt-1">
+                                                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1">
                                                     <span className="text-xs text-muted-foreground">
                                                         Mejor: <span className="font-mono font-semibold text-foreground">{bestWpm} WPM</span>
                                                     </span>
@@ -133,7 +133,7 @@ export function StatsClient() {
                                                     </span>
                                                 </div>
                                             </div>
-                                            <Button variant="ghost" size="sm"
+                                            <Button variant="ghost" size="sm" className="w-full sm:w-auto mt-2 sm:mt-0"
                                                 onClick={() => router.push(`/practice/${lang.toLowerCase()}`)}>
                                                 Practicar →
                                             </Button>
@@ -145,13 +145,14 @@ export function StatsClient() {
                     )}
 
                     {/* Historial reciente */}
-                    <div className="bg-card border border-border rounded-xl p-6">
+                    <div className="bg-card border border-border rounded-xl p-4 sm:p-6">
                         <h2 className="text-sm font-semibold mb-4">Historial reciente</h2>
                         <div className="flex flex-col gap-2">
                             {sessions.slice(0, 10).map(s => (
-                                <div key={s.id} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
-                                    <LanguageIcon name={s.language.toLowerCase()} size={22} />
-                                    <div className="flex-1 min-w-0">
+                                <div key={s.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                                    <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+                                        <LanguageIcon name={s.language.toLowerCase()} size={22} />
+                                        <div className="min-w-0">
                                         <div className="flex items-center gap-2">
                                             <span className="text-sm font-medium">{s.language}</span>
                                             <span className="text-xs px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
@@ -159,8 +160,9 @@ export function StatsClient() {
                                             </span>
                                             <span className="text-xs text-muted-foreground capitalize">{s.mode}</span>
                                         </div>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center gap-4 text-sm font-mono flex-shrink-0">
+                                    <div className="flex items-center gap-3 sm:gap-4 text-sm font-mono flex-shrink-0 pl-7 sm:pl-0">
                                         <span className="font-bold" style={{ color: 'var(--chart-1)' }}>{s.wpm} WPM</span>
                                         <span className="text-muted-foreground">{s.accuracy}%</span>
                                         <span className="text-xs text-muted-foreground">

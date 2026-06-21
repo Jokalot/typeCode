@@ -18,7 +18,7 @@ export function ExerciseInfoPanel({ snippet, concept, exerciseNumber, language, 
 
     return (
         <div
-            className="w-52 flex-shrink-0 rounded-2xl p-4 flex flex-col gap-4"
+            className="w-full lg:w-52 flex-shrink-0 rounded-2xl p-3 sm:p-4 flex flex-col gap-4"
             style={{
                 background: 'var(--card)',
                 border: '1px solid var(--border)',

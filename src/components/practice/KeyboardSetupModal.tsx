@@ -77,7 +77,7 @@ export function KeyboardSetupModal({ onComplete }: Props) {
             style={{ background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)' }}
         >
             <div
-                className="w-full max-w-md rounded-2xl p-8 flex flex-col gap-6"
+                className="w-full max-w-md mx-3 sm:mx-0 rounded-2xl p-5 sm:p-8 flex flex-col gap-4 sm:gap-6"
                 style={{
                     background: 'var(--card)',
                     border: '1px solid var(--border)',
@@ -86,7 +86,7 @@ export function KeyboardSetupModal({ onComplete }: Props) {
             >
                 {/* Header */}
                 <div>
-                    <h2 className="text-xl font-bold mb-1" style={{ color: 'var(--foreground)' }}>
+                    <h2 className="text-lg sm:text-xl font-bold mb-1" style={{ color: 'var(--foreground)' }}>
                         Configura tu teclado
                     </h2>
                     <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>
@@ -108,14 +108,14 @@ export function KeyboardSetupModal({ onComplete }: Props) {
                 </div>
 
                 {/* Carácter objetivo */}
-                <div className="flex flex-col items-center gap-4 py-2">
+                <div className="flex flex-col items-center gap-3 sm:gap-4 py-2">
                     <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted-foreground)' }}>
                         Escribe este símbolo
                     </p>
 
                     {/* Carácter grande */}
                     <div
-                        className="w-28 h-28 rounded-2xl flex items-center justify-center text-6xl font-mono font-bold select-none"
+                        className="w-20 h-20 sm:w-28 sm:h-28 rounded-xl sm:rounded-2xl flex items-center justify-center text-4xl sm:text-6xl font-mono font-bold select-none"
                         style={{
                             background: status === 'captured'
                                 ? 'rgba(168,144,128,0.12)'
