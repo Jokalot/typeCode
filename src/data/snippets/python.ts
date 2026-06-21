@@ -1,0 +1,579 @@
+import { Concept } from '@/types';
+
+export const PYTHON_CONCEPTS: Concept[] = [
+  // ═══════════════════════════════════════════
+  // NIVEL: FUNDAMENTOS
+  // ═══════════════════════════════════════════
+  {
+    id: 'variables',
+    label: 'Variables y tipos',
+    snippets: [
+      {
+        id: 'py-vars-1',
+        concept: 'variables',
+        exerciseNumber: 1,
+        difficulty: 'Principiante',
+        explanation: 'En Python las variables no necesitan declaración de tipo.',
+        code: `nombre = "Mundo"\nedad = 25\nactivo = True\n\nprint(nombre)\nprint(edad)`,
+      },
+      {
+        id: 'py-vars-2',
+        concept: 'variables',
+        exerciseNumber: 2,
+        difficulty: 'Principiante',
+        code: `# Tipos de datos básicos\ntexto = "Hola"\nnumero = 42\ndecimal = 3.14\nlista = [1, 2, 3]\n\nprint(type(texto))\nprint(type(numero))`,
+      },
+      {
+        id: 'py-vars-3',
+        concept: 'variables',
+        exerciseNumber: 3,
+        difficulty: 'Principiante',
+        code: `# Intercambio de variables y múltiple asignación\na, b = 10, 20\na, b = b, a\n\nx = y = z = 0\nprint(a, b, x)`,
+      },
+    ],
+  },
+  {
+    id: 'condicionales',
+    label: 'Condicionales',
+    snippets: [
+      {
+        id: 'py-cond-1',
+        concept: 'condicionales',
+        exerciseNumber: 1,
+        difficulty: 'Principiante',
+        explanation: 'if / elif / else permite ejecutar código según condiciones.',
+        code: `temperatura = 22\n\nif temperatura > 30:\n    print("Hace calor")\nelse:\n    print("Temperatura agradable")`,
+      },
+      {
+        id: 'py-cond-2',
+        concept: 'condicionales',
+        exerciseNumber: 2,
+        difficulty: 'Principiante',
+        code: `nota = 85\n\nif nota >= 90:\n    resultado = "Excelente"\nelif nota >= 70:\n    resultado = "Aprobado"\nelse:\n    resultado = "Reprobado"\n\nprint(resultado)`,
+      },
+      {
+        id: 'py-cond-3',
+        concept: 'condicionales',
+        exerciseNumber: 3,
+        difficulty: 'Principiante',
+        code: `# Operador ternario y operadores lógicos\nedad = 20\nes_adulto = "Sí" if edad >= 18 else "No"\n\ntiene_id = True\npuede_entrar = es_adulto == "Sí" and tiene_id\nprint(f"Acceso: {puede_entrar}")`,
+      },
+    ],
+  },
+  {
+    id: 'ciclo-for',
+    label: 'Ciclo for',
+    snippets: [
+      {
+        id: 'py-for-1',
+        concept: 'ciclo-for',
+        exerciseNumber: 1,
+        difficulty: 'Principiante',
+        explanation: 'El ciclo for itera sobre cualquier secuencia.',
+        code: `frutas = ["manzana", "naranja", "uva"]\n\nfor fruta in frutas:\n    print(f"Me gusta la {fruta}")`,
+      },
+      {
+        id: 'py-for-2',
+        concept: 'ciclo-for',
+        exerciseNumber: 2,
+        difficulty: 'Principiante',
+        code: `# range() genera secuencias numéricas\nfor i in range(1, 6):\n    print(f"Número: {i}")\n\n# enumerate() da índice y valor\ncolores = ["rojo", "verde", "azul"]\nfor i, color in enumerate(colores):\n    print(f"{i}: {color}")`,
+      },
+      {
+        id: 'py-for-3',
+        concept: 'ciclo-for',
+        exerciseNumber: 3,
+        difficulty: 'Principiante',
+        code: `# Comprensión de listas con for\nnumeros = [1, 2, 3, 4, 5, 6, 7, 8]\n\ncuadrados = [x ** 2 for x in numeros]\npares = [x for x in numeros if x % 2 == 0]\n\nprint(cuadrados)\nprint(pares)`,
+      },
+    ],
+  },
+  {
+    id: 'ciclo-while',
+    label: 'Ciclo while',
+    snippets: [
+      {
+        id: 'py-while-1',
+        concept: 'ciclo-while',
+        exerciseNumber: 1,
+        difficulty: 'Principiante',
+        explanation: 'El ciclo while repite mientras la condición sea verdadera.',
+        code: `contador = 0\n\nwhile contador < 5:\n    print(f"Contador: {contador}")\n    contador += 1\n\nprint("Listo!")`,
+      },
+      {
+        id: 'py-while-2',
+        concept: 'ciclo-while',
+        exerciseNumber: 2,
+        difficulty: 'Principiante',
+        code: `# While con break y continue\nnumero = 0\nwhile True:\n    numero += 1\n    if numero % 2 == 0:\n        continue\n    if numero > 10:\n        break\n    print(numero)`,
+      },
+      {
+        id: 'py-while-3',
+        concept: 'ciclo-while',
+        exerciseNumber: 3,
+        difficulty: 'Principiante',
+        code: `# Simulación de menú interactivo\nopciones = ["Iniciar", "Config", "Salir"]\nseleccion = 0\n\nwhile seleccion != 3:\n    for i, op in enumerate(opciones, 1):\n        print(f"{i}. {op}")\n    seleccion = 3  # simular salida\n\nprint("Adiós!")`,
+      },
+    ],
+  },
+  {
+    id: 'funciones',
+    label: 'Funciones',
+    snippets: [
+      {
+        id: 'py-func-1',
+        concept: 'funciones',
+        exerciseNumber: 1,
+        difficulty: 'Principiante',
+        explanation: 'Las funciones agrupan código reutilizable con def.',
+        code: `def saludar(nombre):\n    return f"Hola, {nombre}!"\n\nprint(saludar("Ana"))\nprint(saludar("Carlos"))`,
+      },
+      {
+        id: 'py-func-2',
+        concept: 'funciones',
+        exerciseNumber: 2,
+        difficulty: 'Principiante',
+        code: `# Parámetros con valor por defecto\ndef saludar(nombre, saludo="Hola"):\n    mensaje = f"{saludo}, {nombre}!"\n    return mensaje\n\nprint(saludar("Ana"))\nprint(saludar("Carlos", "Buenos días"))`,
+      },
+      {
+        id: 'py-func-3',
+        concept: 'funciones',
+        exerciseNumber: 3,
+        difficulty: 'Principiante',
+        code: `# Funciones con *args y **kwargs\ndef resumen(*args, **kwargs):\n    total = sum(args)\n    print(f"Suma: {total}")\n    for k, v in kwargs.items():\n        print(f"{k} = {v}")\n\nresumen(1, 2, 3, nombre="Ana", rol="dev")`,
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════════
+  // NIVEL: ALGORITMIA
+  // ═══════════════════════════════════════════
+  {
+    id: 'listas',
+    label: 'Listas',
+    snippets: [
+      {
+        id: 'py-list-1',
+        concept: 'listas',
+        exerciseNumber: 1,
+        difficulty: 'Intermedio',
+        explanation: 'Las listas son colecciones ordenadas y mutables.',
+        code: `numeros = [1, 2, 3, 4, 5]\nnumeros.append(6)\nnumeros.insert(0, 0)\n\nprint(numeros)\nprint(len(numeros))`,
+      },
+      {
+        id: 'py-list-2',
+        concept: 'listas',
+        exerciseNumber: 2,
+        difficulty: 'Intermedio',
+        code: `# Slicing y operaciones\nnumeros = [10, 20, 30, 40, 50]\n\nprimeros = numeros[:3]\nultimos = numeros[-2:]\nreverso = numeros[::-1]\n\nprint(primeros)\nprint(reverso)`,
+      },
+      {
+        id: 'py-list-3',
+        concept: 'listas',
+        exerciseNumber: 3,
+        difficulty: 'Intermedio',
+        code: `# Comprensión de listas avanzada\nnumeros = [1, 2, 3, 4, 5, 6, 7, 8]\n\ncuadrados = [x ** 2 for x in numeros]\npares = [x for x in numeros if x % 2 == 0]\nmatriz = [[j * i for j in range(3)] for i in range(3)]\n\nprint(cuadrados)\nprint(matriz)`,
+      },
+    ],
+  },
+  {
+    id: 'diccionarios',
+    label: 'Diccionarios',
+    snippets: [
+      {
+        id: 'py-dict-1',
+        concept: 'diccionarios',
+        exerciseNumber: 1,
+        difficulty: 'Intermedio',
+        explanation: 'Los diccionarios almacenan pares clave-valor.',
+        code: `persona = {\n    "nombre": "Carlos",\n    "edad": 25,\n    "ciudad": "Madrid"\n}\n\nprint(persona["nombre"])\npersona["email"] = "carlos@email.com"`,
+      },
+      {
+        id: 'py-dict-2',
+        concept: 'diccionarios',
+        exerciseNumber: 2,
+        difficulty: 'Intermedio',
+        code: `# Iteración sobre diccionarios\npersona = {"nombre": "Ana", "edad": 28, "rol": "dev"}\n\nfor clave, valor in persona.items():\n    print(f"{clave}: {valor}")\n\nclaves = list(persona.keys())\nvalores = list(persona.values())`,
+      },
+      {
+        id: 'py-dict-3',
+        concept: 'diccionarios',
+        exerciseNumber: 3,
+        difficulty: 'Intermedio',
+        code: `# Comprensión de diccionarios y métodos\nnotas = {"Ana": 90, "Luis": 65, "Eva": 85}\n\naprobados = {k: v for k, v in notas.items() if v >= 70}\npromedio = sum(notas.values()) / len(notas)\n\nconfig = {}.fromkeys(["host", "port", "db"], "N/A")\nprint(aprobados)\nprint(f"Promedio: {promedio:.1f}")`,
+      },
+    ],
+  },
+  {
+    id: 'lambda-map-filter',
+    label: 'Lambda, map y filter',
+    snippets: [
+      {
+        id: 'py-lambda-1',
+        concept: 'lambda-map-filter',
+        exerciseNumber: 1,
+        difficulty: 'Intermedio',
+        explanation: 'Lambda crea funciones anónimas en una línea.',
+        code: `doble = lambda x: x * 2\nsumar = lambda a, b: a + b\n\nprint(doble(5))\nprint(sumar(3, 7))`,
+      },
+      {
+        id: 'py-lambda-2',
+        concept: 'lambda-map-filter',
+        exerciseNumber: 2,
+        difficulty: 'Intermedio',
+        code: `# map() y filter() con lambda\nnumeros = [3, 1, 4, 1, 5, 9, 2, 6]\n\ndobles = list(map(lambda x: x * 2, numeros))\nmayores = list(filter(lambda x: x > 3, numeros))\n\nprint(dobles)\nprint(mayores)`,
+      },
+      {
+        id: 'py-lambda-3',
+        concept: 'lambda-map-filter',
+        exerciseNumber: 3,
+        difficulty: 'Intermedio',
+        code: `# Combinando map, filter y sorted\nproductos = [\n    {"nombre": "Laptop", "precio": 1200},\n    {"nombre": "Mouse", "precio": 25},\n    {"nombre": "Monitor", "precio": 350},\n]\n\ncaros = list(filter(lambda p: p["precio"] > 100, productos))\nnombres = list(map(lambda p: p["nombre"], caros))\nordenados = sorted(productos, key=lambda p: p["precio"])\nprint(nombres)`,
+      },
+    ],
+  },
+  {
+    id: 'recursion',
+    label: 'Recursión',
+    snippets: [
+      {
+        id: 'py-rec-1',
+        concept: 'recursion',
+        exerciseNumber: 1,
+        difficulty: 'Intermedio',
+        explanation: 'La recursión es una función que se llama a sí misma con un caso base.',
+        code: `def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(5))\nprint(factorial(6))`,
+      },
+      {
+        id: 'py-rec-2',
+        concept: 'recursion',
+        exerciseNumber: 2,
+        difficulty: 'Intermedio',
+        code: `# Fibonacci recursivo\ndef fibonacci(n):\n    if n <= 1:\n        return n\n    return fibonacci(n - 1) + fibonacci(n - 2)\n\nfor i in range(8):\n    print(fibonacci(i), end=" ")`,
+      },
+      {
+        id: 'py-rec-3',
+        concept: 'recursion',
+        exerciseNumber: 3,
+        difficulty: 'Intermedio',
+        code: `# Suma de dígitos recursiva\ndef suma_digitos(n):\n    if n < 10:\n        return n\n    return n % 10 + suma_digitos(n // 10)\n\ndef potencia(base, exp):\n    if exp == 0:\n        return 1\n    return base * potencia(base, exp - 1)\n\nprint(suma_digitos(1234))\nprint(potencia(2, 10))`,
+      },
+    ],
+  },
+  {
+    id: 'ordenamiento',
+    label: 'Ordenamiento',
+    snippets: [
+      {
+        id: 'py-sort-1',
+        concept: 'ordenamiento',
+        exerciseNumber: 1,
+        difficulty: 'Intermedio',
+        explanation: 'Python ofrece sorted() y .sort() para ordenar colecciones.',
+        code: `numeros = [64, 34, 25, 12, 22, 11, 90]\n\nordenados = sorted(numeros)\nreverso = sorted(numeros, reverse=True)\n\nprint(ordenados)\nprint(reverso)`,
+      },
+      {
+        id: 'py-sort-2',
+        concept: 'ordenamiento',
+        exerciseNumber: 2,
+        difficulty: 'Intermedio',
+        code: `# Ordenar objetos con key\nproductos = [\n    {"nombre": "Laptop", "precio": 1200},\n    {"nombre": "Mouse", "precio": 25},\n    {"nombre": "Monitor", "precio": 350},\n]\n\npor_precio = sorted(productos, key=lambda p: p["precio"])\nmas_caro = max(productos, key=lambda p: p["precio"])\nprint(mas_caro["nombre"])`,
+      },
+      {
+        id: 'py-sort-3',
+        concept: 'ordenamiento',
+        exerciseNumber: 3,
+        difficulty: 'Intermedio',
+        code: `# Bubble sort implementado\ndef bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr\n\ndatos = [64, 34, 25, 12, 22, 11, 90]\nprint(bubble_sort(datos))`,
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════════
+  // NIVEL: BUENAS PRÁCTICAS
+  // ═══════════════════════════════════════════
+  {
+    id: 'manejo-errores',
+    label: 'Manejo de errores',
+    snippets: [
+      {
+        id: 'py-err-1',
+        concept: 'manejo-errores',
+        exerciseNumber: 1,
+        difficulty: 'Intermedio',
+        explanation: 'try/except captura errores en tiempo de ejecución.',
+        code: `try:\n    resultado = 10 / 0\nexcept ZeroDivisionError:\n    print("No se puede dividir por cero")\nfinally:\n    print("Operación finalizada")`,
+      },
+      {
+        id: 'py-err-2',
+        concept: 'manejo-errores',
+        exerciseNumber: 2,
+        difficulty: 'Intermedio',
+        code: `# Función con manejo robusto\ndef dividir(a, b):\n    try:\n        resultado = a / b\n        return resultado\n    except ZeroDivisionError:\n        print("Error: división por cero")\n        return None\n    except TypeError:\n        print("Error: tipos inválidos")\n        return None\n\nprint(dividir(10, 2))\nprint(dividir(5, 0))`,
+      },
+      {
+        id: 'py-err-3',
+        concept: 'manejo-errores',
+        exerciseNumber: 3,
+        difficulty: 'Intermedio',
+        code: `# Excepciones personalizadas\nclass EdadInvalidaError(Exception):\n    def __init__(self, edad):\n        self.edad = edad\n        super().__init__(f"Edad inválida: {edad}")\n\ndef validar_edad(edad):\n    if edad < 0 or edad > 150:\n        raise EdadInvalidaError(edad)\n    return True\n\ntry:\n    validar_edad(200)\nexcept EdadInvalidaError as e:\n    print(e)`,
+      },
+    ],
+  },
+  {
+    id: 'clases',
+    label: 'Clases',
+    snippets: [
+      {
+        id: 'py-cls-1',
+        concept: 'clases',
+        exerciseNumber: 1,
+        difficulty: 'Intermedio',
+        explanation: 'Las clases son plantillas para crear objetos con atributos y métodos.',
+        code: `class Persona:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n\n    def presentarse(self):\n        return f"Soy {self.nombre}, tengo {self.edad} años"\n\np = Persona("Ana", 30)\nprint(p.presentarse())`,
+      },
+      {
+        id: 'py-cls-2',
+        concept: 'clases',
+        exerciseNumber: 2,
+        difficulty: 'Intermedio',
+        code: `# Métodos especiales\nclass Persona:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n\n    def __repr__(self):\n        return f"Persona({self.nombre!r}, {self.edad})"\n\n    def __eq__(self, other):\n        return self.nombre == other.nombre\n\np1 = Persona("Ana", 30)\np2 = Persona("Ana", 25)\nprint(p1 == p2)`,
+      },
+      {
+        id: 'py-cls-3',
+        concept: 'clases',
+        exerciseNumber: 3,
+        difficulty: 'Intermedio',
+        code: `# Clase con propiedades y validación\nclass CuentaBancaria:\n    def __init__(self, titular, saldo=0):\n        self.titular = titular\n        self._saldo = saldo\n\n    @property\n    def saldo(self):\n        return self._saldo\n\n    def depositar(self, monto):\n        if monto > 0:\n            self._saldo += monto\n\n    def retirar(self, monto):\n        if 0 < monto <= self._saldo:\n            self._saldo -= monto\n\nc = CuentaBancaria("Ana", 1000)\nc.depositar(500)\nprint(c.saldo)`,
+      },
+    ],
+  },
+  {
+    id: 'herencia',
+    label: 'Herencia',
+    snippets: [
+      {
+        id: 'py-her-1',
+        concept: 'herencia',
+        exerciseNumber: 1,
+        difficulty: 'Intermedio',
+        explanation: 'La herencia permite crear clases hijas que extienden la funcionalidad.',
+        code: `class Animal:\n    def __init__(self, nombre):\n        self.nombre = nombre\n\n    def hablar(self):\n        raise NotImplementedError\n\nclass Perro(Animal):\n    def hablar(self):\n        return f"{self.nombre} dice: ¡Guau!"\n\nrex = Perro("Rex")\nprint(rex.hablar())`,
+      },
+      {
+        id: 'py-her-2',
+        concept: 'herencia',
+        exerciseNumber: 2,
+        difficulty: 'Intermedio',
+        code: `# Polimorfismo con herencia\nclass Animal:\n    def __init__(self, nombre):\n        self.nombre = nombre\n    def hablar(self):\n        raise NotImplementedError\n\nclass Perro(Animal):\n    def hablar(self):\n        return f"{self.nombre}: ¡Guau!"\n\nclass Gato(Animal):\n    def hablar(self):\n        return f"{self.nombre}: ¡Miau!"\n\nanimales = [Perro("Rex"), Gato("Luna")]\nfor a in animales:\n    print(a.hablar())`,
+      },
+      {
+        id: 'py-her-3',
+        concept: 'herencia',
+        exerciseNumber: 3,
+        difficulty: 'Intermedio',
+        code: `# Herencia múltiple y super()\nclass Volador:\n    def volar(self):\n        return "Puedo volar"\n\nclass Nadador:\n    def nadar(self):\n        return "Puedo nadar"\n\nclass Pato(Volador, Nadador):\n    def __init__(self, nombre):\n        self.nombre = nombre\n\n    def describir(self):\n        return f"{self.nombre}: {self.volar()} y {self.nadar()}"\n\np = Pato("Donald")\nprint(p.describir())`,
+      },
+    ],
+  },
+  {
+    id: 'decoradores',
+    label: 'Decoradores',
+    snippets: [
+      {
+        id: 'py-dec-1',
+        concept: 'decoradores',
+        exerciseNumber: 1,
+        difficulty: 'Avanzado',
+        explanation: 'Los decoradores envuelven funciones para agregar comportamiento.',
+        code: `def mi_decorador(func):\n    def wrapper():\n        print("Antes de la función")\n        func()\n        print("Después de la función")\n    return wrapper\n\n@mi_decorador\ndef saludar():\n    print("¡Hola!")\n\nsaludar()`,
+      },
+      {
+        id: 'py-dec-2',
+        concept: 'decoradores',
+        exerciseNumber: 2,
+        difficulty: 'Avanzado',
+        code: `# Decorador con argumentos\nimport time\n\ndef cronometrar(func):\n    def wrapper(*args, **kwargs):\n        inicio = time.time()\n        resultado = func(*args, **kwargs)\n        fin = time.time()\n        print(f"{func.__name__} tardó {fin - inicio:.4f}s")\n        return resultado\n    return wrapper\n\n@cronometrar\ndef operacion_lenta():\n    time.sleep(0.1)\n    return "listo"\n\noperacion_lenta()`,
+      },
+      {
+        id: 'py-dec-3',
+        concept: 'decoradores',
+        exerciseNumber: 3,
+        difficulty: 'Avanzado',
+        code: `# Decorador con parámetros y functools\nfrom functools import wraps\n\ndef repetir(veces):\n    def decorador(func):\n        @wraps(func)\n        def wrapper(*args, **kwargs):\n            for _ in range(veces):\n                resultado = func(*args, **kwargs)\n            return resultado\n        return wrapper\n    return decorador\n\n@repetir(veces=3)\ndef saludar(nombre):\n    print(f"Hola, {nombre}!")\n\nsaludar("Ana")`,
+      },
+    ],
+  },
+  {
+    id: 'context-manager',
+    label: 'Context managers',
+    snippets: [
+      {
+        id: 'py-ctx-1',
+        concept: 'context-manager',
+        exerciseNumber: 1,
+        difficulty: 'Avanzado',
+        explanation: 'with gestiona recursos automáticamente (apertura/cierre).',
+        code: `# Uso básico de with para archivos\ndef leer_archivo(ruta):\n    try:\n        with open(ruta, "r") as archivo:\n            contenido = archivo.read()\n            return contenido\n    except FileNotFoundError:\n        print(f"No encontrado: {ruta}")\n        return None`,
+      },
+      {
+        id: 'py-ctx-2',
+        concept: 'context-manager',
+        exerciseNumber: 2,
+        difficulty: 'Avanzado',
+        code: `# Context manager con clase\nclass Temporizador:\n    def __enter__(self):\n        import time\n        self.inicio = time.time()\n        return self\n\n    def __exit__(self, *args):\n        import time\n        self.duracion = time.time() - self.inicio\n        print(f"Tardó {self.duracion:.4f}s")\n\nwith Temporizador() as t:\n    suma = sum(range(1000000))`,
+      },
+      {
+        id: 'py-ctx-3',
+        concept: 'context-manager',
+        exerciseNumber: 3,
+        difficulty: 'Avanzado',
+        code: `# Context manager con contextlib\nfrom contextlib import contextmanager\n\n@contextmanager\ndef conexion_db(host):\n    print(f"Conectando a {host}...")\n    conn = {"host": host, "status": "open"}\n    try:\n        yield conn\n    finally:\n        conn["status"] = "closed"\n        print("Conexión cerrada")\n\nwith conexion_db("localhost") as db:\n    print(f"Usando: {db['host']}")`,
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════════
+  // NIVEL: ENTREVISTA
+  // ═══════════════════════════════════════════
+  {
+    id: 'two-sum',
+    label: 'Two Sum',
+    snippets: [
+      {
+        id: 'py-twosum-1',
+        concept: 'two-sum',
+        exerciseNumber: 1,
+        difficulty: 'Avanzado',
+        explanation: 'Encuentra dos números que sumen un target. Clásico de entrevistas.',
+        code: `# Enfoque bruto O(n²)\ndef two_sum(nums, target):\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                return [i, j]\n    return []\n\nprint(two_sum([2, 7, 11, 15], 9))`,
+      },
+      {
+        id: 'py-twosum-2',
+        concept: 'two-sum',
+        exerciseNumber: 2,
+        difficulty: 'Avanzado',
+        code: `# Enfoque óptimo O(n) con hash map\ndef two_sum(nums, target):\n    visto = {}\n    for i, num in enumerate(nums):\n        complemento = target - num\n        if complemento in visto:\n            return [visto[complemento], i]\n        visto[num] = i\n    return []\n\nprint(two_sum([2, 7, 11, 15], 9))`,
+      },
+      {
+        id: 'py-twosum-3',
+        concept: 'two-sum',
+        exerciseNumber: 3,
+        difficulty: 'Avanzado',
+        code: `# Two Sum con todos los pares posibles\ndef two_sum_all(nums, target):\n    visto = {}\n    pares = []\n    for i, num in enumerate(nums):\n        comp = target - num\n        if comp in visto:\n            pares.append((visto[comp], i))\n        visto[num] = i\n    return pares\n\nresultado = two_sum_all([1, 3, 2, 4, 3, 6], 7)\nprint(resultado)`,
+      },
+    ],
+  },
+  {
+    id: 'palindromo',
+    label: 'Palíndromo',
+    snippets: [
+      {
+        id: 'py-palin-1',
+        concept: 'palindromo',
+        exerciseNumber: 1,
+        difficulty: 'Avanzado',
+        explanation: 'Un palíndromo se lee igual al derecho y al revés.',
+        code: `def es_palindromo(s):\n    limpio = s.lower().replace(" ", "")\n    return limpio == limpio[::-1]\n\nprint(es_palindromo("ana"))\nprint(es_palindromo("hola"))`,
+      },
+      {
+        id: 'py-palin-2',
+        concept: 'palindromo',
+        exerciseNumber: 2,
+        difficulty: 'Avanzado',
+        code: `# Palíndromo ignorando no alfanuméricos\ndef es_palindromo(s: str) -> bool:\n    limpio = "".join(c.lower() for c in s if c.isalnum())\n    return limpio == limpio[::-1]\n\ncasos = ["racecar", "hello", "A man a plan a canal Panama"]\nfor caso in casos:\n    print(f"{caso!r}: {es_palindromo(caso)}")`,
+      },
+      {
+        id: 'py-palin-3',
+        concept: 'palindromo',
+        exerciseNumber: 3,
+        difficulty: 'Avanzado',
+        code: `# Palíndromo más largo en un string\ndef palindromo_mas_largo(s):\n    resultado = ""\n    for i in range(len(s)):\n        for j in range(i + 1, len(s) + 1):\n            sub = s[i:j]\n            if sub == sub[::-1] and len(sub) > len(resultado):\n                resultado = sub\n    return resultado\n\nprint(palindromo_mas_largo("babad"))\nprint(palindromo_mas_largo("cbbd"))`,
+      },
+    ],
+  },
+  {
+    id: 'aplanar-lista',
+    label: 'Aplanar lista',
+    snippets: [
+      {
+        id: 'py-flat-1',
+        concept: 'aplanar-lista',
+        exerciseNumber: 1,
+        difficulty: 'Avanzado',
+        explanation: 'Aplanar convierte una lista anidada en una lista plana.',
+        code: `# Aplanar un nivel\ndef aplanar(lista):\n    resultado = []\n    for item in lista:\n        if isinstance(item, list):\n            resultado.extend(item)\n        else:\n            resultado.append(item)\n    return resultado\n\nprint(aplanar([1, [2, 3], [4, 5]]))`,
+      },
+      {
+        id: 'py-flat-2',
+        concept: 'aplanar-lista',
+        exerciseNumber: 2,
+        difficulty: 'Avanzado',
+        code: `# Aplanar recursivo (profundidad infinita)\ndef aplanar(lista):\n    resultado = []\n    for item in lista:\n        if isinstance(item, list):\n            resultado.extend(aplanar(item))\n        else:\n            resultado.append(item)\n    return resultado\n\nanidada = [1, [2, 3], [4, [5, 6]], 7]\nprint(aplanar(anidada))`,
+      },
+      {
+        id: 'py-flat-3',
+        concept: 'aplanar-lista',
+        exerciseNumber: 3,
+        difficulty: 'Avanzado',
+        code: `# Aplanar con generador\ndef aplanar_gen(lista):\n    for item in lista:\n        if isinstance(item, list):\n            yield from aplanar_gen(item)\n        else:\n            yield item\n\nanidada = [1, [2, [3, [4]]], [5, 6]]\nresultado = list(aplanar_gen(anidada))\nprint(resultado)`,
+      },
+    ],
+  },
+  {
+    id: 'anagramas',
+    label: 'Anagramas',
+    snippets: [
+      {
+        id: 'py-anag-1',
+        concept: 'anagramas',
+        exerciseNumber: 1,
+        difficulty: 'Avanzado',
+        explanation: 'Dos palabras son anagramas si tienen las mismas letras reordenadas.',
+        code: `def son_anagramas(a, b):\n    return sorted(a.lower()) == sorted(b.lower())\n\nprint(son_anagramas("listen", "silent"))\nprint(son_anagramas("hola", "mundo"))`,
+      },
+      {
+        id: 'py-anag-2',
+        concept: 'anagramas',
+        exerciseNumber: 2,
+        difficulty: 'Avanzado',
+        code: `# Anagramas usando Counter\nfrom collections import Counter\n\ndef son_anagramas(a, b):\n    return Counter(a.lower()) == Counter(b.lower())\n\ndef agrupar_anagramas(palabras):\n    grupos = {}\n    for p in palabras:\n        clave = tuple(sorted(p.lower()))\n        grupos.setdefault(clave, []).append(p)\n    return list(grupos.values())\n\nprint(agrupar_anagramas(["eat","tea","tan","ate","nat","bat"]))`,
+      },
+      {
+        id: 'py-anag-3',
+        concept: 'anagramas',
+        exerciseNumber: 3,
+        difficulty: 'Avanzado',
+        code: `# Agrupar anagramas estilo LeetCode\nfrom collections import defaultdict\n\ndef agrupar_anagramas(strs):\n    grupos = defaultdict(list)\n    for s in strs:\n        clave = "".join(sorted(s))\n        grupos[clave].append(s)\n    return list(grupos.values())\n\nresultado = agrupar_anagramas(["eat","tea","tan","ate","nat","bat"])\nfor grupo in resultado:\n    print(grupo)`,
+      },
+    ],
+  },
+  {
+    id: 'busqueda-binaria',
+    label: 'Búsqueda binaria',
+    snippets: [
+      {
+        id: 'py-binsearch-1',
+        concept: 'busqueda-binaria',
+        exerciseNumber: 1,
+        difficulty: 'Avanzado',
+        explanation: 'Búsqueda binaria divide el espacio a la mitad en cada paso.',
+        code: `def busqueda_binaria(arr, target):\n    izq, der = 0, len(arr) - 1\n    while izq <= der:\n        mid = (izq + der) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            izq = mid + 1\n        else:\n            der = mid - 1\n    return -1\n\nprint(busqueda_binaria([1,3,5,7,9], 5))`,
+      },
+      {
+        id: 'py-binsearch-2',
+        concept: 'busqueda-binaria',
+        exerciseNumber: 2,
+        difficulty: 'Avanzado',
+        code: `# Búsqueda binaria recursiva\ndef buscar(arr, target, izq=0, der=None):\n    if der is None:\n        der = len(arr) - 1\n    if izq > der:\n        return -1\n    mid = (izq + der) // 2\n    if arr[mid] == target:\n        return mid\n    elif arr[mid] < target:\n        return buscar(arr, target, mid + 1, der)\n    else:\n        return buscar(arr, target, izq, mid - 1)\n\nprint(buscar([2, 4, 6, 8, 10, 12], 8))`,
+      },
+      {
+        id: 'py-binsearch-3',
+        concept: 'busqueda-binaria',
+        exerciseNumber: 3,
+        difficulty: 'Avanzado',
+        code: `# Buscar punto de inserción (bisect)\nimport bisect\n\ndef insertar_ordenado(arr, val):\n    pos = bisect.bisect_left(arr, val)\n    arr.insert(pos, val)\n    return arr\n\nnumeros = [1, 3, 5, 7, 9]\nprint(insertar_ordenado(numeros, 4))\nprint(insertar_ordenado(numeros, 6))`,
+      },
+    ],
+  },
+];
