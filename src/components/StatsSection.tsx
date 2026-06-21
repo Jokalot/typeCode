@@ -38,17 +38,17 @@ export function StatsSection() {
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-6 sm:mb-8">
       {items.map((stat, i) => {
         const Icon = stat.icon;
         return (
-          <div key={i} className="bg-card border border-border rounded-xl p-5 flex items-center justify-between">
-            <div>
-              <p className="text-xs text-muted-foreground mb-1">{stat.label}</p>
-              <p className="text-2xl font-medium text-foreground">{stat.value}</p>
+          <div key={i} className="bg-card border border-border rounded-xl p-3 sm:p-5 flex items-center justify-between">
+            <div className="min-w-0">
+              <p className="text-[10px] sm:text-xs text-muted-foreground mb-0.5 sm:mb-1 truncate">{stat.label}</p>
+              <p className="text-xl sm:text-2xl font-medium text-foreground">{stat.value}</p>
             </div>
-            <div className={`w-11 h-11 rounded-xl ${stat.bg} flex items-center justify-center`}>
-              <Icon className={`w-5 h-5 ${stat.color}`} />
+            <div className={`w-8 h-8 sm:w-11 sm:h-11 rounded-xl ${stat.bg} flex items-center justify-center flex-shrink-0 ml-2`}>
+              <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${stat.color}`} />
             </div>
           </div>
         );
