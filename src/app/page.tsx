@@ -1,10 +1,10 @@
-import { Header } from '@/components/Header';
+import { HeaderWrapper } from '@/components/HeaderWrapper';
 import { HomeClient } from '@/components/HomeClient';
 
 export default function RootPage() {
   return (
     <div className="bg-background">
-      <Header />
+      <HeaderWrapper />
       <main>
         <HomeClient />
       </main>
