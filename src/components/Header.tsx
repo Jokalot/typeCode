@@ -1,7 +1,10 @@
-import { Code2, BookOpen, Trophy, Settings, LogIn, LogOut, User } from 'lucide-react';
+'use client';
+
+import { Code2, BookOpen, Trophy, Settings, LogIn, LogOut, User, Award } from 'lucide-react';
 import { Button } from './ui/button';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
+
 
 export function Header() {
   const { user, loading, signInWithGoogle, signOut } = useAuth();
@@ -21,9 +24,9 @@ export function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="/stats" className="text-sm text-foreground hover:text-primary transition-colors flex items-center gap-2">
-              <Trophy className="w-4 h-4" />
-              Stats
+            <Link href="/achievements" className="text-sm text-foreground hover:text-primary transition-colors flex items-center gap-2">
+              <Award className="w-4 h-4" />
+              Logros
             </Link>
             <Button variant="ghost" size="sm">
               <Settings className="w-4 h-4" />
