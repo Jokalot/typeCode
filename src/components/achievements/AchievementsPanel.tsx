@@ -3,6 +3,8 @@
 import { useSession } from '@/hooks/useSession';
 import { useProgress } from '@/hooks/useProgress';
 import { useAchievements } from '@/hooks/useAchievements';
+import { AchievementIcon } from '@/components/icons/AchievementIcon';
+import { Lock } from 'lucide-react';
 
 const categoryLabel = {
     velocidad: '⚡ Velocidad',
@@ -81,14 +83,15 @@ export function AchievementsPanel() {
                                     }}
                                 >
                                     {/* Icono */}
-                                    <div
-                                        className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
                                         style={{
-                                            background: a.unlocked ? 'var(--primary)/10' : 'var(--border)',
-                                            filter: a.unlocked ? 'none' : 'grayscale(100%)',
-                                        }}
-                                    >
-                                        {a.unlocked ? a.icon : '🔒'}
+                                            background: a.unlocked ? 'rgba(168,144,128,0.12)' : 'var(--muted)',
+                                            border: `1px solid ${a.unlocked ? 'var(--primary)' : 'var(--border)'}`,
+                                        }}>
+                                        {a.unlocked
+                                            ? <AchievementIcon id={a.id} size={24} color="var(--primary)" unlocked />
+                                            : <Lock className="w-5 h-5" style={{ color: 'var(--muted-foreground)' }} />
+                                        }
                                     </div>
 
                                     {/* Info */}
