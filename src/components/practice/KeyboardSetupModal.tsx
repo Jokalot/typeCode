@@ -123,10 +123,10 @@ export function KeyboardSetupModal({ onComplete }: Props) {
                                     ? 'rgba(232,154,154,0.12)'
                                     : 'var(--muted)',
                             border: `2px solid ${status === 'captured'
-                                    ? 'var(--primary)'
-                                    : status === 'wrong'
-                                        ? 'var(--destructive)'
-                                        : 'var(--border)'
+                                ? 'var(--primary)'
+                                : status === 'wrong'
+                                    ? 'var(--destructive)'
+                                    : 'var(--border)'
                                 }`,
                             color: 'var(--foreground)',
                             transition: 'all 0.15s',
@@ -212,8 +212,24 @@ export function KeyboardSetupModal({ onComplete }: Props) {
 
                 {/* Acciones */}
                 <div className="flex gap-2">
-                    <Button variant="ghost" size="sm" onClick={skip} className="flex-1">
-                        Saltar
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={skip}
+                        className="flex-1"
+                    >
+                        Saltar este
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                            finishConfig();
+                            onComplete();
+                        }}
+                        className="flex-1 text-muted-foreground"
+                    >
+                        Saltar todo
                     </Button>
                     <Button
                         size="sm"
