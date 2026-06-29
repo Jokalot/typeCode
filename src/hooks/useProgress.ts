@@ -1,5 +1,7 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
+import { createClient } from '@/lib/supabase/client';
+import { useAuth } from './useAuth';
 import { ConceptProgress, LevelId } from '@/types';
 
 const STORAGE_KEY = 'codetype_progress';
@@ -15,12 +17,38 @@ function save(data: ConceptProgress[]) {
 }
 
 export function useProgress() {
+  const { user } = useAuth();
   const [progress, setProgress] = useState<ConceptProgress[]>([]);
 
-  useEffect(() => { setProgress(load()); }, []);
+  // Carga progreso
+  useEffect(() => {
+    if (user) {
+      const supabase = createClient();
+      supabase
+        .from('concept_progress')
+        .select('*')
+        .eq('user_id', user.id)
+        .then(({ data }) => {
+          if (data) {
+            const mapped: ConceptProgress[] = data.map(p => ({
+              conceptId: p.concept_id,
+              languageName: p.language_name,
+              levelId: p.level_id as LevelId,
+              completedExercises: p.completed_exercises ?? [],
+              dominated: p.dominated,
+              bestAccuracy: p.best_accuracy,
+              bestWpm: p.best_wpm,
+            }));
+            setProgress(mapped);
+            save(mapped);
+          }
+        });
+    } else {
+      setProgress(load());
+    }
+  }, [user]);
 
-  // Registra un ejercicio completado
-  const completeExercise = useCallback((
+  const completeExercise = useCallback(async (
     languageName: string,
     levelId: LevelId,
     conceptId: string,
@@ -32,49 +60,60 @@ export function useProgress() {
       const existing = prev.find(
         p => p.conceptId === conceptId && p.languageName === languageName
       );
-      const updated: ConceptProgress = existing
-        ? {
-            ...existing,
-            completedExercises: [...new Set([...existing.completedExercises, exerciseNumber])],
-            bestAccuracy: Math.max(existing.bestAccuracy, accuracy),
-            bestWpm: Math.max(existing.bestWpm, wpm),
-            dominated: [...new Set([...existing.completedExercises, exerciseNumber])].length === 3
-              && Math.max(existing.bestAccuracy, accuracy) >= 80,
-          }
-        : {
-            conceptId,
-            languageName,
-            levelId,
-            completedExercises: [exerciseNumber],
-            dominated: false,
-            bestAccuracy: accuracy,
-            bestWpm: wpm,
-          };
+      const completedExercises = [
+        ...new Set([...(existing?.completedExercises ?? []), exerciseNumber])
+      ];
+      const bestAccuracy = Math.max(existing?.bestAccuracy ?? 0, accuracy);
+      const bestWpm = Math.max(existing?.bestWpm ?? 0, wpm);
+      const dominated = completedExercises.length === 3 && bestAccuracy >= 80;
+
+      const updated: ConceptProgress = {
+        conceptId,
+        languageName,
+        levelId,
+        completedExercises,
+        dominated,
+        bestAccuracy,
+        bestWpm,
+      };
 
       const next = existing
         ? prev.map(p => p.conceptId === conceptId && p.languageName === languageName ? updated : p)
         : [...prev, updated];
 
       save(next);
+
+      // Guarda en Supabase si hay usuario
+      if (user) {
+        const supabase = createClient();
+        supabase.from('concept_progress').upsert({
+          user_id: user.id,
+          language_name: languageName,
+          level_id: levelId,
+          concept_id: conceptId,
+          completed_exercises: completedExercises,
+          dominated,
+          best_accuracy: bestAccuracy,
+          best_wpm: bestWpm,
+          updated_at: new Date().toISOString(),
+        }, { onConflict: 'user_id,language_name,concept_id' });
+      }
+
       return next;
     });
-  }, []);
+  }, [user]);
 
-  // Obtiene progreso de un concepto específico
   const getConceptProgress = useCallback((languageName: string, conceptId: string) => {
     return progress.find(
       p => p.conceptId === conceptId && p.languageName === languageName
     ) ?? null;
   }, [progress]);
 
-  // Verifica si un concepto está desbloqueado
-  // Regla: el primer concepto de cada nivel siempre está desbloqueado.
-  // Los siguientes se desbloquean cuando el anterior tiene al menos 1 ejercicio completado.
   const isUnlocked = useCallback((
     languageName: string,
     levelId: LevelId,
     conceptId: string,
-    allConceptIds: string[], // todos los conceptos del nivel en orden
+    allConceptIds: string[],
   ): boolean => {
     const idx = allConceptIds.indexOf(conceptId);
     if (idx === 0) return true;
@@ -85,7 +124,6 @@ export function useProgress() {
     return (prevProgress?.completedExercises.length ?? 0) > 0;
   }, [progress]);
 
-  // Stats generales por lenguaje
   const getLanguageStats = useCallback((languageName: string) => {
     const langProgress = progress.filter(p => p.languageName === languageName);
     return {
@@ -95,5 +133,11 @@ export function useProgress() {
     };
   }, [progress]);
 
-  return { progress, completeExercise, getConceptProgress, isUnlocked, getLanguageStats };
+  return {
+    progress,
+    completeExercise,
+    getConceptProgress,
+    isUnlocked,
+    getLanguageStats,
+  };
 }
