@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { RotateCw, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { RotateCw, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Timer, BookOpen, ArrowRight, Keyboard, ClipboardList } from 'lucide-react';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
 import { LanguageIcon } from './LanguageIcon';
@@ -88,7 +88,7 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
               <button key={m} onClick={() => { setMode(m); reset(); }}
                 className={`px-2 sm:px-3 py-1.5 rounded-md text-xs font-medium transition-all ${mode === m ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
                   }`}>
-                {m === 'speed' ? '⏱ Speed' : '📘 Learn'}
+                <span className="flex items-center gap-1">{m === 'speed' ? <><Timer className="w-3.5 h-3.5" /> Speed</> : <><BookOpen className="w-3.5 h-3.5" /> Learn</>}</span>
               </button>
             ))}
           </div>
@@ -203,11 +203,11 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
                   <span style={{ color: accentColor }}>WPM</span>
                 </div>
                 <div className="flex gap-2 mt-2 flex-wrap justify-center">
-                  <Button onClick={reset} style={{ background: accentColor, color: '#fff', border: 'none' }}>
-                    ↺ Reintentar
+                  <Button onClick={reset} style={{ background: accentColor, color: '#fff', border: 'none' }} className="gap-1.5">
+                    <RotateCw className="w-3.5 h-3.5" /> Reintentar
                   </Button>
-                  <Button variant="outline" onClick={nextSnippet}>
-                    Siguiente →
+                  <Button variant="outline" onClick={nextSnippet} className="gap-1.5">
+                    Siguiente <ArrowRight className="w-3.5 h-3.5" />
                   </Button>
                 </div>
               </div>
@@ -231,7 +231,7 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
                 color: showCheatsheet ? accentColor : 'var(--muted-foreground)',
               }}
             >
-              ⌨️ Cheatsheet
+              <Keyboard className="w-3.5 h-3.5" /> Cheatsheet
               {showCheatsheet ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
             </button>
             {concept && (
@@ -244,7 +244,7 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
                   color: showExerciseInfo ? accentColor : 'var(--muted-foreground)',
                 }}
               >
-                📋 Info
+                <ClipboardList className="w-3.5 h-3.5" /> Info
                 {showExerciseInfo ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
               </button>
             )}

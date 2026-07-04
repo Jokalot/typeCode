@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { CheckCircle2, ChevronRight } from 'lucide-react';
+import { CheckCircle2, ChevronRight, Keyboard, X, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useKeyboardConfig } from '@/hooks/useKeyboardConfig';
 
@@ -158,7 +158,7 @@ export function KeyboardSetupModal({ onComplete }: Props) {
                             className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm"
                             style={{ background: 'var(--muted)', color: 'var(--muted-foreground)' }}
                         >
-                            <span className="animate-pulse">⌨️</span>
+                            <span className="animate-pulse"><Keyboard className="w-4 h-4" style={{ color: 'var(--muted-foreground)' }} /></span>
                             <span>Presiona la tecla en tu teclado...</span>
                         </div>
                     )}
@@ -200,7 +200,7 @@ export function KeyboardSetupModal({ onComplete }: Props) {
                                 className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm"
                                 style={{ background: 'rgba(232,154,154,0.12)', color: 'var(--destructive)' }}
                             >
-                                <span>✗</span>
+                                <span><X className="w-3.5 h-3.5 inline-block" /></span>
                                 <span>
                                     Eso produjo <strong>{capturedKeys.join(' + ')}</strong>, no <strong>{current.char}</strong>.
                                     Intenta de nuevo.
@@ -243,7 +243,7 @@ export function KeyboardSetupModal({ onComplete }: Props) {
                             opacity: status !== 'captured' && !alreadyBound ? 0.5 : 1,
                         }}
                     >
-                        {isLast ? 'Finalizar ✓' : 'Siguiente'}
+                        <span className="flex items-center gap-1">{isLast ? <>Finalizar <Check className="w-3.5 h-3.5" /></> : 'Siguiente'}</span>
                         {!isLast && <ChevronRight className="w-4 h-4 ml-1" />}
                     </Button>
                 </div>

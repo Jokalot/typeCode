@@ -2,7 +2,7 @@
 
 import { Snippet, Concept } from '@/types';
 import { useProgress } from '@/hooks/useProgress';
-import { CheckCircle2, Circle } from 'lucide-react';
+import { CheckCircle2, Circle, Lightbulb, ChevronLeft } from 'lucide-react';
 
 interface Props {
     snippet: Snippet;
@@ -83,7 +83,7 @@ export function ExerciseInfoPanel({ snippet, concept, exerciseNumber, language, 
                                     style={{ color: isCurrent ? accentColor : done ? 'var(--muted-foreground)' : 'var(--muted-foreground)' }}
                                 >
                                     Ejercicio {n}
-                                    {isCurrent && <span className="ml-1 text-[9px]">← actual</span>}
+                                    {isCurrent && <span className="ml-1 text-[9px] inline-flex items-center gap-0.5"><ChevronLeft className="w-2.5 h-2.5" /> actual</span>}
                                 </span>
                             </div>
                         );
@@ -124,7 +124,7 @@ export function ExerciseInfoPanel({ snippet, concept, exerciseNumber, language, 
                 style={{ background: `${accentColor}08`, border: `1px solid ${accentColor}20` }}
             >
                 <p className="text-[10px] font-bold mb-1" style={{ color: accentColor }}>
-                    💡 Tip
+                    <Lightbulb className="w-3 h-3 inline-block mr-0.5" style={{ color: accentColor }} /> Tip
                 </p>
                 <p className="text-[10px] leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>
                     Lee el código completo antes de empezar a escribir. Anticipa los caracteres especiales.

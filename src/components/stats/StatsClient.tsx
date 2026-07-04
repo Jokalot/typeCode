@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useSession } from '@/hooks/useSession';
 import { LanguageIcon } from '@/components/LanguageIcon';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, Trash2, TrendingUp, Target, Zap, Award } from 'lucide-react';
+import { ChevronLeft, Trash2, TrendingUp, Target, Zap, Award, Keyboard, ArrowRight } from 'lucide-react';
 
 export function StatsClient() {
     const router = useRouter();
@@ -43,7 +43,7 @@ export function StatsClient() {
             {sessions.length === 0 ? (
                 // Estado vacío
                 <div className="flex flex-col items-center justify-center py-24 gap-4">
-                    <div className="text-5xl">⌨️</div>
+                    <Keyboard className="w-12 h-12" style={{ color: 'var(--muted-foreground)', opacity: 0.5 }} />
                     <h2 className="text-xl font-semibold">Aún no hay sesiones</h2>
                     <p className="text-muted-foreground text-sm">Completa tu primera práctica para ver tus estadísticas aquí.</p>
                     <Button onClick={() => router.push('/')} className="mt-2">
@@ -135,7 +135,7 @@ export function StatsClient() {
                                             </div>
                                             <Button variant="ghost" size="sm" className="w-full sm:w-auto mt-2 sm:mt-0"
                                                 onClick={() => router.push(`/practice/${lang.toLowerCase()}`)}>
-                                                Practicar →
+                                                Practicar <ArrowRight className="w-3.5 h-3.5 inline-block ml-0.5" />
                                             </Button>
                                         </div>
                                     );

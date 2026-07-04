@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { ChevronLeft, ChevronRight, Trophy } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Trophy, Lightbulb, ArrowRight, ArrowLeft, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { StatsSection } from '@/components/StatsSection';
 import { TypingPractice } from '@/components/TypingPractice';
@@ -159,7 +159,7 @@ export function PracticeClient({ language }: Props) {
             color: 'var(--foreground)',
           }}
         >
-          <span className="font-medium" style={{ color: language.accentColor }}>💡 </span>
+          <span className="font-medium" style={{ color: language.accentColor }}><Lightbulb className="w-3.5 h-3.5 inline-block mr-1" style={{ color: language.accentColor }} /></span>
           {snippet.explanation}
         </div>
       )}
@@ -199,8 +199,8 @@ export function PracticeClient({ language }: Props) {
             </div>
           </div>
           <div className="flex gap-2 w-full sm:w-auto">
-            <Button variant="outline" size="sm" onClick={handleBackToMap}>
-              ← Mapa
+            <Button variant="outline" size="sm" onClick={handleBackToMap} className="gap-1.5">
+              <ArrowLeft className="w-3.5 h-3.5" /> Mapa
             </Button>
             {result.exerciseNumber < 3 ? (
               <Button
@@ -208,7 +208,7 @@ export function PracticeClient({ language }: Props) {
                 onClick={handleNext}
                 style={{ background: language.accentColor, color: '#fff', border: 'none' }}
               >
-                Siguiente ejercicio →
+                Siguiente ejercicio <ArrowRight className="w-3.5 h-3.5" />
               </Button>
             ) : (
               <Button
@@ -216,7 +216,7 @@ export function PracticeClient({ language }: Props) {
                 onClick={handleBackToMap}
                 style={{ background: language.accentColor, color: '#fff', border: 'none' }}
               >
-                Volver al mapa ✓
+                Volver al mapa <Check className="w-3.5 h-3.5" />
               </Button>
             )}
           </div>

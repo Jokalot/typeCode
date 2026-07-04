@@ -123,7 +123,7 @@ function ReconfigureCharModal({ char, label, onSave, onClose }: ReconfigureModal
                             className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm"
                             style={{ background: 'var(--muted)', color: 'var(--muted-foreground)' }}
                         >
-                            <span className="animate-pulse">⌨️</span>
+                            <span className="animate-pulse"><Keyboard className="w-4 h-4" style={{ color: 'var(--muted-foreground)' }} /></span>
                             <span>Presiona la tecla en tu teclado...</span>
                         </div>
                     )}
@@ -154,7 +154,7 @@ function ReconfigureCharModal({ char, label, onSave, onClose }: ReconfigureModal
                             className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm"
                             style={{ background: 'rgba(232,154,154,0.12)', color: 'var(--destructive)' }}
                         >
-                            <span>✗ Eso produjo <strong>{capturedKeys.join(' + ')}</strong>, intenta de nuevo.</span>
+                            <span className="flex items-center gap-1.5"><X className="w-3.5 h-3.5 flex-shrink-0" /> Eso produjo <strong>{capturedKeys.join(' + ')}</strong>, intenta de nuevo.</span>
                         </div>
                     )}
                 </div>

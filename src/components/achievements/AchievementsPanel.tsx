@@ -4,7 +4,7 @@ import { useSession } from '@/hooks/useSession';
 import { useProgress } from '@/hooks/useProgress';
 import { useAchievements } from '@/hooks/useAchievements';
 import { AchievementIcon } from '@/components/icons/AchievementIcon';
-import { Lock } from 'lucide-react';
+import { Lock, Check } from 'lucide-react';
 
 const categoryLabel = {
     velocidad: ' Velocidad',
@@ -103,7 +103,7 @@ export function AchievementsPanel() {
                                             {a.unlocked && (
                                                 <span className="text-xs px-1.5 py-0.5 rounded-full font-bold"
                                                     style={{ background: 'var(--primary)', color: 'var(--primary-foreground)' }}>
-                                                    ✓
+                                                    <Check className="w-3 h-3" />
                                                 </span>
                                             )}
                                         </div>

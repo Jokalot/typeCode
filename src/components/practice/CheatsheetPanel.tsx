@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react';
 import Link from 'next/link';
+import { CheckCircle2, Settings } from 'lucide-react';
 import { useKeyboardConfig } from '@/hooks/useKeyboardConfig';
 
 interface Props {
@@ -96,7 +97,7 @@ export function CheatsheetPanel({ code, accentColor }: Props) {
                     </span>
                 ))}
                 {userKeys && (
-                    <span className="text-[10px] ml-1" style={{ color: accentColor }}>✓</span>
+                    <CheckCircle2 className="w-2.5 h-2.5 ml-1" style={{ color: accentColor }} />
                 )}
             </div>
         );
@@ -196,7 +197,7 @@ export function CheatsheetPanel({ code, accentColor }: Props) {
                 className="text-xs text-left transition-colors hover:underline block"
                 style={{ color: accentColor }}
             >
-                ⚙️ Configuración de teclado
+                <Settings className="w-3 h-3 inline-block mr-1" /> Configuración de teclado
             </Link>
         </div>
     );
