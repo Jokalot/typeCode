@@ -1,5 +1,7 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
+import { createClient } from '@/lib/supabase/client';
+import { useAuth } from './useAuth';
 
 export interface KeyBinding {
     char: string;
@@ -7,6 +9,7 @@ export interface KeyBinding {
 }
 
 const STORAGE_KEY = 'codetype_keyboard';
+const CONFIGURED_KEY = 'codetype_keyboard_configured';
 
 const CHARS_TO_CONFIG = [
     { char: '{', label: 'llave abre {' },
@@ -40,44 +43,126 @@ const CHARS_TO_CONFIG = [
     { char: '?', label: 'interrogación ?' },
 ];
 
-function load(): KeyBinding[] {
+function loadLocal(): KeyBinding[] {
     if (typeof window === 'undefined') return [];
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]'); }
     catch { return []; }
 }
 
-function save(bindings: KeyBinding[]) {
+function loadConfiguredLocal(): boolean | null {
+    if (typeof window === 'undefined') return null;
+    const val = localStorage.getItem(CONFIGURED_KEY);
+    if (val === null) {
+        // Fallback: si hay bindings guardados, está configurado
+        const bindings = loadLocal();
+        return bindings.length > 0 ? true : null;
+    }
+    return val === 'true';
+}
+
+function saveLocal(bindings: KeyBinding[]) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(bindings));
 }
 
+function saveConfiguredLocal(configured: boolean) {
+    localStorage.setItem(CONFIGURED_KEY, JSON.stringify(configured));
+}
+
 export function useKeyboardConfig() {
+    const { user } = useAuth();
     const [bindings, setBindings] = useState<KeyBinding[]>([]);
     const [configured, setConfigured] = useState<boolean | null>(null);
 
+    // Carga bindings — de Supabase si hay usuario, si no de localStorage
     useEffect(() => {
-        const saved = load();
-        setBindings(saved);
-        setConfigured(saved.length > 0);
-    }, []);
+        if (user) {
+            const supabase = createClient();
+            supabase
+                .from('keyboard_config')
+                .select('*')
+                .eq('user_id', user.id)
+                .single()
+                .then(({ data }) => {
+                    if (data) {
+                        const b = (data.bindings as KeyBinding[]) ?? [];
+                        setBindings(b);
+                        setConfigured(data.configured);
+                        // Caché local
+                        saveLocal(b);
+                        saveConfiguredLocal(data.configured);
+                    } else {
+                        // No tiene config en Supabase, checar localStorage
+                        const localBindings = loadLocal();
+                        const localConfigured = loadConfiguredLocal();
+                        setBindings(localBindings);
+                        setConfigured(localConfigured === null ? false : localConfigured);
+
+                        // Si tiene datos locales, migrarlos a Supabase
+                        if (localBindings.length > 0 && localConfigured) {
+                            supabase.from('keyboard_config').upsert({
+                                user_id: user.id,
+                                bindings: localBindings,
+                                configured: true,
+                                updated_at: new Date().toISOString(),
+                            }, { onConflict: 'user_id' });
+                        }
+                    }
+                });
+        } else {
+            const localBindings = loadLocal();
+            const localConfigured = loadConfiguredLocal();
+            setBindings(localBindings);
+            if (localConfigured === null) {
+                // Nunca configurado
+                setConfigured(localBindings.length > 0 ? true : false);
+            } else {
+                setConfigured(localConfigured);
+            }
+        }
+    }, [user]);
 
     const saveBinding = useCallback((char: string, keys: string[]) => {
         setBindings(prev => {
             const filtered = prev.filter(b => b.char !== char);
             const updated = [...filtered, { char, keys }];
-            save(updated);
+            saveLocal(updated);
             return updated;
         });
     }, []);
 
     const finishConfig = useCallback(() => {
         setConfigured(true);
-    }, []);
+        saveConfiguredLocal(true);
+
+        // Persistir en Supabase
+        if (user) {
+            const currentBindings = loadLocal(); // leer el estado más reciente del localStorage
+            const supabase = createClient();
+            supabase.from('keyboard_config').upsert({
+                user_id: user.id,
+                bindings: currentBindings,
+                configured: true,
+                updated_at: new Date().toISOString(),
+            }, { onConflict: 'user_id' });
+        }
+    }, [user]);
 
     const resetConfig = useCallback(() => {
-        save([]);
+        saveLocal([]);
+        saveConfiguredLocal(false);
         setBindings([]);
         setConfigured(false);
-    }, []);
+
+        if (user) {
+            const supabase = createClient();
+            supabase.from('keyboard_config').upsert({
+                user_id: user.id,
+                bindings: [],
+                configured: false,
+                updated_at: new Date().toISOString(),
+            }, { onConflict: 'user_id' });
+        }
+    }, [user]);
 
     const getKeys = useCallback((char: string): string[] | null => {
         return bindings.find(b => b.char === char)?.keys ?? null;

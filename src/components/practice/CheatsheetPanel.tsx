@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import Link from 'next/link';
 import { useKeyboardConfig } from '@/hooks/useKeyboardConfig';
 
 interface Props {
@@ -190,16 +191,13 @@ export function CheatsheetPanel({ code, accentColor }: Props) {
 
             {/* Link a reconfigurar */}
             <div style={{ borderTop: '1px solid var(--border)' }} />
-            <button
-                className="text-xs text-left transition-colors hover:underline"
+            <Link
+                href="/settings"
+                className="text-xs text-left transition-colors hover:underline block"
                 style={{ color: accentColor }}
-                onClick={() => {
-                    localStorage.removeItem('codetype_keyboard');
-                    window.location.reload();
-                }}
             >
-                ⚙️ Reconfigurar teclado
-            </button>
+                ⚙️ Configuración de teclado
+            </Link>
         </div>
     );
 }

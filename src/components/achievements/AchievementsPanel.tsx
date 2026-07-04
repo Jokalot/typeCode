@@ -7,10 +7,10 @@ import { AchievementIcon } from '@/components/icons/AchievementIcon';
 import { Lock } from 'lucide-react';
 
 const categoryLabel = {
-    velocidad: '⚡ Velocidad',
-    precision: '🎯 Precisión',
-    constancia: '🔥 Constancia',
-    progreso: '📚 Progreso',
+    velocidad: ' Velocidad',
+    precision: ' Precisión',
+    constancia: ' Constancia',
+    progreso: ' Progreso',
 };
 
 export function AchievementsPanel() {
