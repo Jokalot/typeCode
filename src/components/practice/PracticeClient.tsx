@@ -9,6 +9,7 @@ import { TypingPractice } from '@/components/TypingPractice';
 import { LevelSelector } from '@/components/practice/LevelSelector';
 import { useSession } from '@/hooks/useSession';
 import { useProgress } from '@/hooks/useProgress';
+import { useSyncProgress } from '@/hooks/useSyncProgress';
 import { Language, Concept, LevelId } from '@/types';
 import { useKeyboardConfig } from '@/hooks/useKeyboardConfig';
 import { KeyboardSetupModal } from '@/components/practice/KeyboardSetupModal';
@@ -37,6 +38,7 @@ export function PracticeClient({ language }: Props) {
   const { saveSession } = useSession();
   const { completeExercise } = useProgress();
   const { configured, finishConfig } = useKeyboardConfig();
+  useSyncProgress();
 
   const [active, setActive] = useState<ActiveExercise | null>(null);
   const [result, setResult] = useState<CompletedResult | null>(null);
