@@ -24,8 +24,6 @@ export function useAchievementNotifier(sessions: Session[], progress: ConceptPro
     const initialized = useRef(false);
 
     useEffect(() => {
-        if (sessions.length === 0 && progress.length === 0) return;
-
         const seen = getSeenIds();
         const newlyUnlocked: Achievement[] = [];
 
