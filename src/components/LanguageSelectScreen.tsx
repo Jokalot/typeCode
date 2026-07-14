@@ -15,19 +15,23 @@ const difficultyLabel = { Principiante: 'EASY', Intermedio: 'MEDIUM', Avanzado: 
 
 export function LanguageSelectScreen({ languages, onSelect }: Props) {
   const [hovered, setHovered] = useState<number | null>(null);
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selected, setSelected] = useState<number>(0);
+  const [mobileDetail, setMobileDetail] = useState<number | null>(null);
 
-  // Desktop siempre muestra el primero seleccionado
-  const lang = languages[selected ?? 0];
+  const lang = languages[selected];
   const previewCode = lang.levels[0]?.concepts[0]?.snippets[0]?.code ?? '';
   const totalConcepts = lang.levels.reduce((sum, l) => sum + l.concepts.length, 0);
 
   // ── MÓVIL: Vista detalle de un lenguaje ──
-  if (selected !== null) {
+  if (mobileDetail !== null) {
+    const mLang = languages[mobileDetail];
+    const mPreviewCode = mLang.levels[0]?.concepts[0]?.snippets[0]?.code ?? '';
+    const mTotalConcepts = mLang.levels.reduce((sum, l) => sum + l.concepts.length, 0);
+
     return (
       <div className="lg:hidden px-4 py-4 min-h-[calc(100vh-73px)]">
         <button
-          onClick={() => setSelected(null)}
+          onClick={() => setMobileDetail(null)}
           className="flex items-center gap-2 mb-4 text-sm font-medium"
           style={{ color: 'var(--muted-foreground)' }}
         >
@@ -37,21 +41,21 @@ export function LanguageSelectScreen({ languages, onSelect }: Props) {
 
         <div className="rounded-2xl p-5 flex flex-col gap-4"
           style={{
-            background: `linear-gradient(145deg, var(--card), ${lang.accentColor}08)`,
-            border: `1px solid ${lang.accentColor}30`,
-            boxShadow: `0 8px 32px -8px ${lang.accentColor}25`,
+            background: `linear-gradient(145deg, var(--card), ${mLang.accentColor}08)`,
+            border: `1px solid ${mLang.accentColor}30`,
+            boxShadow: `0 8px 32px -8px ${mLang.accentColor}25`,
           }}>
 
           <div className="flex items-center gap-3">
             <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
-              style={{ background: `${lang.accentColor}20`, border: `1px solid ${lang.accentColor}40` }}>
-              <LanguageIcon name={lang.icon} size={34} />
+              style={{ background: `${mLang.accentColor}20`, border: `1px solid ${mLang.accentColor}40` }}>
+              <LanguageIcon name={mLang.icon} size={34} />
             </div>
             <div>
-              <h2 className="font-extrabold text-xl" style={{ color: 'var(--foreground)' }}>{lang.name}</h2>
+              <h2 className="font-extrabold text-xl" style={{ color: 'var(--foreground)' }}>{mLang.name}</h2>
               <span className="text-[10px] font-bold tracking-[0.2em] px-2 py-0.5 rounded-md uppercase"
-                style={{ background: `${lang.accentColor}15`, color: lang.accentColor, border: `1px solid ${lang.accentColor}30` }}>
-                {lang.tag}
+                style={{ background: `${mLang.accentColor}15`, color: mLang.accentColor, border: `1px solid ${mLang.accentColor}30` }}>
+                {mLang.tag}
               </span>
             </div>
           </div>
@@ -62,18 +66,18 @@ export function LanguageSelectScreen({ languages, onSelect }: Props) {
             <div className="flex gap-1 items-center">
               {[1, 2, 3].map(s => (
                 <Star key={s} className="w-4 h-4" style={{
-                  fill: s <= difficultyStars[lang.difficulty] ? lang.accentColor : 'transparent',
-                  color: s <= difficultyStars[lang.difficulty] ? lang.accentColor : 'var(--border)',
+                  fill: s <= difficultyStars[mLang.difficulty] ? mLang.accentColor : 'transparent',
+                  color: s <= difficultyStars[mLang.difficulty] ? mLang.accentColor : 'var(--border)',
                 }} />
               ))}
-              <span className="text-xs ml-1 font-bold" style={{ color: lang.accentColor }}>
-                {difficultyLabel[lang.difficulty]}
+              <span className="text-xs ml-1 font-bold" style={{ color: mLang.accentColor }}>
+                {difficultyLabel[mLang.difficulty]}
               </span>
             </div>
           </div>
 
           <div className="flex gap-3">
-            {[{ val: lang.levels.length, lbl: 'Niveles' }, { val: totalConcepts, lbl: 'Conceptos' }].map(({ val, lbl }) => (
+            {[{ val: mLang.levels.length, lbl: 'Niveles' }, { val: mTotalConcepts, lbl: 'Conceptos' }].map(({ val, lbl }) => (
               <div key={lbl} className="flex-1 rounded-xl p-3 text-center"
                 style={{ background: 'rgba(0,0,0,0.06)', border: '1px solid var(--border)' }}>
                 <div className="text-xl font-black" style={{ color: 'var(--foreground)' }}>{val}</div>
@@ -89,21 +93,21 @@ export function LanguageSelectScreen({ languages, onSelect }: Props) {
                 <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
               </div>
-              <span className="text-[11px] ml-1 font-mono text-[#8b949e]">preview.{lang.name.toLowerCase()}</span>
+              <span className="text-[11px] ml-1 font-mono text-[#8b949e]">preview.{mLang.name.toLowerCase()}</span>
             </div>
             <pre className="p-3 text-xs leading-relaxed font-mono overflow-auto" style={{ color: '#e6edf3', maxHeight: '130px' }}>
-              {previewCode}
+              {mPreviewCode}
             </pre>
           </div>
 
           <p className="text-sm leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>
-            {lang.description}
+            {mLang.description}
           </p>
 
           <button
-            onClick={() => onSelect(selected)}
+            onClick={() => onSelect(mobileDetail)}
             className="w-full py-3.5 rounded-xl flex items-center justify-center gap-2 font-bold text-sm tracking-widest text-white"
-            style={{ background: `linear-gradient(135deg, ${lang.accentColor}, ${lang.accentColor}cc)` }}
+            style={{ background: `linear-gradient(135deg, ${mLang.accentColor}, ${mLang.accentColor}cc)` }}
           >
             <Play className="w-4 h-4 fill-white" />
             INICIAR AHORA
@@ -128,7 +132,7 @@ export function LanguageSelectScreen({ languages, onSelect }: Props) {
             return (
               <button
                 key={i}
-                onClick={() => setSelected(i)}
+                onClick={() => setMobileDetail(i)}
                 className="w-full rounded-2xl p-4 text-left flex items-center gap-3"
                 style={{
                   background: 'var(--card)',
@@ -246,7 +250,7 @@ export function LanguageSelectScreen({ languages, onSelect }: Props) {
             </p>
 
             <button
-              onClick={() => onSelect(selected ?? 0)}
+              onClick={() => onSelect(selected)}
               className="mt-auto w-full py-3.5 rounded-xl flex items-center justify-center gap-2 font-bold text-sm tracking-widest text-white transition-all hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden group shadow-lg"
               style={{ background: `linear-gradient(135deg, ${lang.accentColor}, ${lang.accentColor}cc)` }}
             >
@@ -265,13 +269,14 @@ export function LanguageSelectScreen({ languages, onSelect }: Props) {
           </div>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4 content-start pb-6">
             {languages.map((l, i) => {
-              const isSelected = (selected ?? 0) === i;
+              const isSelected = selected === i;
               const isHovered = hovered === i;
               const stars = difficultyStars[l.difficulty];
               return (
                 <button
                   key={i}
                   onClick={() => setSelected(i)}
+                  onDoubleClick={() => onSelect(i)}
                   onMouseEnter={() => setHovered(i)}
                   onMouseLeave={() => setHovered(null)}
                   className="relative rounded-2xl p-4 text-left transition-all duration-200 overflow-hidden flex flex-col"
