@@ -15,6 +15,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         explanation: 'let y const son las formas modernas de declarar variables en JS.',
         code: `const nombre = "Mundo";\nlet contador = 0;\nconst PI = 3.14159;\n\nconsole.log(\`Hola, \${nombre}!\`);\nconsole.log(contador);`,
+        output: `Hola, Mundo!\n0`,
       },
       {
         id: 'js-vars-2',
@@ -22,6 +23,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Principiante',
         code: `// Tipos de datos en JavaScript\nconst texto = "Hola";\nconst numero = 42;\nconst decimal = 3.14;\nconst booleano = true;\nconst nulo = null;\n\nconsole.log(typeof texto);\nconsole.log(typeof numero);`,
+        output: `string\nnumber`,
       },
       {
         id: 'js-vars-3',
@@ -29,6 +31,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Principiante',
         code: `// Template literals y conversión de tipos\nconst nombre = "Ana";\nconst edad = 25;\n\nconst mensaje = \`\${nombre} tiene \${edad} años\`;\nconst numero = Number("42");\nconst texto = String(100);\n\nconsole.log(mensaje);\nconsole.log(typeof numero);`,
+        output: `Ana tiene 25 años\nnumber`,
       },
     ],
   },
@@ -43,6 +46,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         explanation: 'if / else if / else controla el flujo según condiciones.',
         code: `const hora = 14;\n\nif (hora < 12) {\n  console.log("Buenos días");\n} else if (hora < 18) {\n  console.log("Buenas tardes");\n} else {\n  console.log("Buenas noches");\n}`,
+        output: `Buenas tardes`,
       },
       {
         id: 'js-cond-2',
@@ -50,6 +54,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Principiante',
         code: `// Switch y operador ternario\nconst dia = "lunes";\n\nswitch (dia) {\n  case "lunes":\n  case "martes":\n    console.log("Inicio de semana");\n    break;\n  case "viernes":\n    console.log("¡Viernes!");\n    break;\n  default:\n    console.log("Otro día");\n}\n\nconst tipo = dia === "domingo" ? "Descanso" : "Trabajo";\nconsole.log(tipo);`,
+        output: `Inicio de semana\nTrabajo`,
       },
       {
         id: 'js-cond-3',
@@ -57,6 +62,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Principiante',
         code: `// Operadores lógicos y nullish coalescing\nconst usuario = { nombre: "Ana", rol: null };\n\nconst rol = usuario.rol ?? "invitado";\nconst admin = usuario.rol === "admin" && usuario.nombre;\nconst saludo = usuario.nombre || "Anónimo";\n\nconsole.log(rol);\nconsole.log(saludo);`,
+        output: `invitado\nAna`,
       },
     ],
   },
@@ -71,6 +77,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         explanation: 'for itera con un contador; for...of itera sobre valores.',
         code: `const frutas = ["manzana", "naranja", "uva"];\n\nfor (const fruta of frutas) {\n  console.log(\`Me gusta la \${fruta}\`);\n}\n\nfor (let i = 1; i <= 5; i++) {\n  console.log(\`Número: \${i}\`);\n}`,
+        output: `Me gusta la manzana\nMe gusta la naranja\nMe gusta la uva\nNúmero: 1\nNúmero: 2\nNúmero: 3\nNúmero: 4\nNúmero: 5`,
       },
       {
         id: 'js-for-2',
@@ -78,6 +85,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Principiante',
         code: `// forEach, for...in y for...of\nconst colores = ["rojo", "verde", "azul"];\n\ncolores.forEach((color, i) => {\n  console.log(\`\${i}: \${color}\`);\n});\n\nconst obj = { a: 1, b: 2, c: 3 };\nfor (const key in obj) {\n  console.log(\`\${key} = \${obj[key]}\`);\n}`,
+        output: `0: rojo\n1: verde\n2: azul\na = 1\nb = 2\nc = 3`,
       },
       {
         id: 'js-for-3',
@@ -85,6 +93,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Principiante',
         code: `// map, filter y reduce\nconst numeros = [1, 2, 3, 4, 5, 6, 7, 8];\n\nconst cuadrados = numeros.map(x => x ** 2);\nconst pares = numeros.filter(x => x % 2 === 0);\nconst suma = numeros.reduce((acc, x) => acc + x, 0);\n\nconsole.log(cuadrados);\nconsole.log(pares);\nconsole.log(suma);`,
+        output: `[ 1, 4, 9, 16, 25, 36, 49, 64 ]\n[ 2, 4, 6, 8 ]\n36`,
       },
     ],
   },
@@ -99,6 +108,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         explanation: 'while repite mientras la condición sea verdadera.',
         code: `let contador = 0;\n\nwhile (contador < 5) {\n  console.log(\`Contador: \${contador}\`);\n  contador++;\n}\n\nconsole.log("Listo!");`,
+        output: `Contador: 0\nContador: 1\nContador: 2\nContador: 3\nContador: 4\nListo!`,
       },
       {
         id: 'js-while-2',
@@ -106,6 +116,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Principiante',
         code: `// do...while y break\nlet numero = 1;\n\ndo {\n  console.log(\`Número: \${numero}\`);\n  numero *= 2;\n} while (numero < 100);\n\n// Buscar con while y break\nconst datos = [3, 7, 1, 9, 4];\nlet i = 0;\nwhile (i < datos.length) {\n  if (datos[i] === 9) break;\n  i++;\n}\nconsole.log(\`Encontrado en índice: \${i}\`);`,
+        output: `Número: 1\nNúmero: 2\nNúmero: 4\nNúmero: 8\nNúmero: 16\nNúmero: 32\nNúmero: 64\nEncontrado en índice: 3`,
       },
       {
         id: 'js-while-3',
@@ -113,6 +124,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Principiante',
         code: `// Generador de Collatz con while\nfunction collatz(n) {\n  const secuencia = [n];\n  while (n !== 1) {\n    n = n % 2 === 0 ? n / 2 : 3 * n + 1;\n    secuencia.push(n);\n  }\n  return secuencia;\n}\n\nconst resultado = collatz(6);\nconsole.log(resultado);\nconsole.log(\`Pasos: \${resultado.length}\`);`,
+        output: `[ 6, 3, 10, 5, 16, 8, 4, 2, 1 ]\nPasos: 9`,
       },
     ],
   },
@@ -127,6 +139,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         explanation: 'Las arrow functions son la forma moderna de escribir funciones.',
         code: `const doble = (n) => n * 2;\nconst sumar = (a, b) => a + b;\nconst saludar = (nombre) => \`Hola, \${nombre}!\`;\n\nconsole.log(doble(5));\nconsole.log(sumar(3, 7));\nconsole.log(saludar("Ana"));`,
+        output: `10\n10\nHola, Ana!`,
       },
       {
         id: 'js-func-2',
@@ -134,6 +147,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Principiante',
         code: `// Parámetros por defecto y rest\nfunction crearUsuario(nombre, rol = "viewer") {\n  return { nombre, rol };\n}\n\nfunction sumarTodos(...nums) {\n  return nums.reduce((a, b) => a + b, 0);\n}\n\nconsole.log(crearUsuario("Ana"));\nconsole.log(crearUsuario("Luis", "admin"));\nconsole.log(sumarTodos(1, 2, 3, 4, 5));`,
+        output: `{ nombre: 'Ana', rol: 'viewer' }\n{ nombre: 'Luis', rol: 'admin' }\n15`,
       },
       {
         id: 'js-func-3',
@@ -141,6 +155,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Principiante',
         code: `// Funciones de orden superior\nfunction aplicar(arr, fn) {\n  return arr.map(fn);\n}\n\nfunction componer(f, g) {\n  return (x) => f(g(x));\n}\n\nconst doble = (x) => x * 2;\nconst incrementar = (x) => x + 1;\nconst dobleYSumar = componer(incrementar, doble);\n\nconsole.log(aplicar([1, 2, 3], dobleYSumar));`,
+        output: `[ 3, 5, 7 ]`,
       },
     ],
   },
@@ -159,6 +174,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         explanation: 'Los arrays en JS tienen métodos poderosos para manipular datos.',
         code: `const productos = [\n  { nombre: "Laptop", precio: 1200 },\n  { nombre: "Mouse", precio: 25 },\n  { nombre: "Monitor", precio: 350 },\n];\n\nconst caros = productos.filter(p => p.precio > 100);\nconst nombres = productos.map(p => p.nombre);\nconsole.log(nombres);`,
+        output: `[ 'Laptop', 'Mouse', 'Monitor' ]`,
       },
       {
         id: 'js-arr-2',
@@ -166,6 +182,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Intermedio',
         code: `// Métodos avanzados de array\nconst numeros = [5, 3, 8, 1, 9, 2];\n\nconst total = numeros.reduce((sum, n) => sum + n, 0);\nconst tieneGrande = numeros.some(n => n > 7);\nconst todoPositivo = numeros.every(n => n > 0);\nconst encontrado = numeros.find(n => n > 5);\n\nconsole.log(\`Total: \${total}\`);\nconsole.log(\`Encontrado: \${encontrado}\`);`,
+        output: `Total: 28\nEncontrado: 8`,
       },
       {
         id: 'js-arr-3',
@@ -173,6 +190,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Intermedio',
         code: `// Desestructuración y spread con arrays\nconst colores = ["rojo", "verde", "azul"];\nconst [primero, ...resto] = colores;\n\nconst combinado = [...colores, "amarillo"];\nconst copia = [...colores];\n\nconst matriz = [[1, 2], [3, 4], [5, 6]];\nconst plano = matriz.flat();\n\nconsole.log(primero, resto);\nconsole.log(plano);`,
+        output: `rojo [ 'verde', 'azul' ]\n[ 1, 2, 3, 4, 5, 6 ]`,
       },
     ],
   },
@@ -187,6 +205,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         explanation: 'Los objetos almacenan pares clave-valor con sintaxis flexible.',
         code: `const usuario = {\n  nombre: "Ana",\n  edad: 28,\n  ciudad: "CDMX"\n};\n\nconst { nombre, edad } = usuario;\nconst actualizado = { ...usuario, edad: 29 };\n\nconsole.log(nombre);\nconsole.log(actualizado);`,
+        output: `Ana\n{ nombre: 'Ana', edad: 29, ciudad: 'CDMX' }`,
       },
       {
         id: 'js-obj-2',
@@ -194,6 +213,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Intermedio',
         code: `// Object methods y computed properties\nconst persona = { nombre: "Ana", edad: 28, rol: "dev" };\n\nconst claves = Object.keys(persona);\nconst valores = Object.values(persona);\nconst pares = Object.entries(persona);\n\nfor (const [key, val] of pares) {\n  console.log(\`\${key}: \${val}\`);\n}\n\nconst campo = "email";\nconst extended = { ...persona, [campo]: "ana@dev.com" };`,
+        output: `nombre: Ana\nedad: 28\nrol: dev`,
       },
       {
         id: 'js-obj-3',
@@ -201,6 +221,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Intermedio',
         code: `// Map vs Object\nconst mapa = new Map();\nmapa.set("nombre", "Carlos");\nmapa.set("edad", 30);\nmapa.set(42, "respuesta");\n\nfor (const [key, val] of mapa) {\n  console.log(\`\${key} => \${val}\`);\n}\n\nconsole.log(mapa.size);\nconsole.log(mapa.has("nombre"));`,
+        output: `nombre => Carlos\nedad => 30\n42 => respuesta\n3\ntrue`,
       },
     ],
   },
@@ -215,6 +236,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         explanation: 'Las funciones de orden superior reciben o retornan funciones.',
         code: `const numeros = [3, 1, 4, 1, 5, 9, 2, 6];\n\nconst dobles = numeros.map(x => x * 2);\nconst mayores = numeros.filter(x => x > 3);\n\nconsole.log(dobles);\nconsole.log(mayores);`,
+        output: `[ 6, 2, 8, 2, 10, 18, 4, 12 ]\n[ 4, 5, 9, 6 ]`,
       },
       {
         id: 'js-hof-2',
@@ -222,6 +244,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Intermedio',
         code: `// Encadenar map, filter y reduce\nconst transacciones = [\n  { tipo: "ingreso", monto: 1000 },\n  { tipo: "gasto", monto: 200 },\n  { tipo: "ingreso", monto: 500 },\n  { tipo: "gasto", monto: 150 },\n];\n\nconst totalIngresos = transacciones\n  .filter(t => t.tipo === "ingreso")\n  .map(t => t.monto)\n  .reduce((sum, m) => sum + m, 0);\n\nconsole.log(\`Ingresos: \$\${totalIngresos}\`);`,
+        output: `Ingresos: $1500`,
       },
       {
         id: 'js-hof-3',
@@ -229,6 +252,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Intermedio',
         code: `// Crear funciones con closures\nfunction crearContador(inicio = 0) {\n  let cuenta = inicio;\n  return {\n    incrementar: () => ++cuenta,\n    decrementar: () => --cuenta,\n    valor: () => cuenta,\n  };\n}\n\nconst contador = crearContador(10);\ncontador.incrementar();\ncontador.incrementar();\nconsole.log(contador.valor());`,
+        output: `12`,
       },
     ],
   },
@@ -243,6 +267,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         explanation: 'Una función recursiva se llama a sí misma con un caso base.',
         code: `function factorial(n) {\n  if (n <= 1) return 1;\n  return n * factorial(n - 1);\n}\n\nconsole.log(factorial(5));\nconsole.log(factorial(6));`,
+        output: `120\n720`,
       },
       {
         id: 'js-rec-2',
@@ -250,6 +275,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Intermedio',
         code: `// Fibonacci recursivo\nfunction fibonacci(n) {\n  if (n <= 1) return n;\n  return fibonacci(n - 1) + fibonacci(n - 2);\n}\n\nconst secuencia = [];\nfor (let i = 0; i < 8; i++) {\n  secuencia.push(fibonacci(i));\n}\nconsole.log(secuencia);`,
+        output: `[ 0, 1, 1, 2, 3, 5, 8, 13 ]`,
       },
       {
         id: 'js-rec-3',
@@ -257,6 +283,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Intermedio',
         code: `// Recorrer objeto anidado recursivamente\nfunction buscarValor(obj, clave) {\n  if (obj.hasOwnProperty(clave)) return obj[clave];\n  for (const val of Object.values(obj)) {\n    if (typeof val === "object" && val !== null) {\n      const resultado = buscarValor(val, clave);\n      if (resultado !== undefined) return resultado;\n    }\n  }\n  return undefined;\n}\n\nconst datos = { a: { b: { c: 42 } } };\nconsole.log(buscarValor(datos, "c"));`,
+        output: `42`,
       },
     ],
   },
@@ -271,6 +298,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         explanation: 'Array.sort() ordena in-place con un comparador personalizado.',
         code: `const numeros = [64, 34, 25, 12, 22, 11, 90];\n\nconst ordenados = [...numeros].sort((a, b) => a - b);\nconst reverso = [...numeros].sort((a, b) => b - a);\n\nconsole.log(ordenados);\nconsole.log(reverso);`,
+        output: `[ 11, 12, 22, 25, 34, 64, 90 ]\n[ 90, 64, 34, 25, 22, 12, 11 ]`,
       },
       {
         id: 'js-sort-2',
@@ -278,6 +306,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Intermedio',
         code: `// Ordenar objetos por propiedad\nconst productos = [\n  { nombre: "Laptop", precio: 1200 },\n  { nombre: "Mouse", precio: 25 },\n  { nombre: "Monitor", precio: 350 },\n];\n\nconst porPrecio = [...productos].sort((a, b) => a.precio - b.precio);\nconst porNombre = [...productos].sort((a, b) =>\n  a.nombre.localeCompare(b.nombre)\n);\n\nconsole.log(porPrecio.map(p => p.nombre));`,
+        output: `[ 'Mouse', 'Monitor', 'Laptop' ]`,
       },
       {
         id: 'js-sort-3',
@@ -285,6 +314,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Intermedio',
         code: `// Bubble sort implementado\nfunction bubbleSort(arr) {\n  const a = [...arr];\n  const n = a.length;\n  for (let i = 0; i < n; i++) {\n    for (let j = 0; j < n - i - 1; j++) {\n      if (a[j] > a[j + 1]) {\n        [a[j], a[j + 1]] = [a[j + 1], a[j]];\n      }\n    }\n  }\n  return a;\n}\n\nconst datos = [64, 34, 25, 12, 22, 11, 90];\nconsole.log(bubbleSort(datos));`,
+        output: `[ 11, 12, 22, 25, 34, 64, 90 ]`,
       },
     ],
   },
@@ -303,6 +333,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         explanation: 'try/catch captura errores para evitar que la app falle.',
         code: `try {\n  const resultado = JSON.parse("no es json");\n} catch (error) {\n  console.log("Error:", error.message);\n} finally {\n  console.log("Operación finalizada");\n}`,
+        output: `Error: Unexpected token 'o', "no es json" is not valid JSON\nOperación finalizada`,
       },
       {
         id: 'js-err-2',
@@ -310,6 +341,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Intermedio',
         code: `// Errores personalizados\nclass ApiError extends Error {\n  constructor(message, statusCode) {\n    super(message);\n    this.name = "ApiError";\n    this.statusCode = statusCode;\n  }\n}\n\nfunction validarEmail(email) {\n  const regex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\n  if (!regex.test(email)) {\n    throw new ApiError("Email inválido", 400);\n  }\n  return true;\n}`,
+        output: ``,
       },
       {
         id: 'js-err-3',
@@ -331,6 +363,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         explanation: 'Las clases en JS son syntactic sugar sobre prototipos.',
         code: `class Persona {\n  constructor(nombre, edad) {\n    this.nombre = nombre;\n    this.edad = edad;\n  }\n\n  presentarse() {\n    return \`Soy \${this.nombre}, tengo \${this.edad} años\`;\n  }\n}\n\nconst p = new Persona("Ana", 30);\nconsole.log(p.presentarse());`,
+        output: `Soy Ana, tengo 30 años`,
       },
       {
         id: 'js-cls-2',
@@ -338,6 +371,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Intermedio',
         code: `// Getters, setters y métodos estáticos\nclass Temperatura {\n  #celsius;\n\n  constructor(celsius) {\n    this.#celsius = celsius;\n  }\n\n  get fahrenheit() {\n    return this.#celsius * 9 / 5 + 32;\n  }\n\n  set celsius(valor) {\n    if (valor < -273.15) throw new Error("Inválido");\n    this.#celsius = valor;\n  }\n\n  static desdeFahrenheit(f) {\n    return new Temperatura((f - 32) * 5 / 9);\n  }\n}\n\nconst t = new Temperatura(100);\nconsole.log(t.fahrenheit);`,
+        output: `212`,
       },
       {
         id: 'js-cls-3',
@@ -345,6 +379,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Intermedio',
         code: `// Clase con patrón Builder\nclass QueryBuilder {\n  #table = "";\n  #conditions = [];\n  #limit = null;\n\n  from(table) {\n    this.#table = table;\n    return this;\n  }\n\n  where(condition) {\n    this.#conditions.push(condition);\n    return this;\n  }\n\n  take(n) {\n    this.#limit = n;\n    return this;\n  }\n\n  build() {\n    let query = \`SELECT * FROM \${this.#table}\`;\n    if (this.#conditions.length) {\n      query += \` WHERE \${this.#conditions.join(" AND ")}\`;\n    }\n    if (this.#limit) query += \` LIMIT \${this.#limit}\`;\n    return query;\n  }\n}\n\nconst sql = new QueryBuilder()\n  .from("users")\n  .where("age > 18")\n  .take(10)\n  .build();\nconsole.log(sql);`,
+        output: `SELECT * FROM users WHERE age > 18 LIMIT 10`,
       },
     ],
   },
@@ -359,6 +394,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         explanation: 'extends crea una clase hija que hereda de la clase padre.',
         code: `class Animal {\n  constructor(nombre) {\n    this.nombre = nombre;\n  }\n\n  hablar() {\n    throw new Error("Implementar en subclase");\n  }\n}\n\nclass Perro extends Animal {\n  hablar() {\n    return \`\${this.nombre} dice: ¡Guau!\`;\n  }\n}\n\nconst rex = new Perro("Rex");\nconsole.log(rex.hablar());`,
+        output: `Rex dice: ¡Guau!`,
       },
       {
         id: 'js-her-2',
@@ -366,13 +402,15 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Intermedio',
         code: `// Polimorfismo con herencia\nclass Forma {\n  area() { return 0; }\n  toString() { return \`Área: \${this.area()}\`; }\n}\n\nclass Circulo extends Forma {\n  constructor(radio) {\n    super();\n    this.radio = radio;\n  }\n  area() { return Math.PI * this.radio ** 2; }\n}\n\nclass Rectangulo extends Forma {\n  constructor(ancho, alto) {\n    super();\n    this.ancho = ancho;\n    this.alto = alto;\n  }\n  area() { return this.ancho * this.alto; }\n}\n\nconst formas = [new Circulo(5), new Rectangulo(4, 6)];\nformas.forEach(f => console.log(f.toString()));`,
+        output: `Área: 78.53981633974483\nÁrea: 24`,
       },
       {
         id: 'js-her-3',
         concept: 'herencia',
         exerciseNumber: 3,
         difficulty: 'Intermedio',
-        code: `// Mixins como alternativa a herencia múltiple\nconst Serializable = (Base) => class extends Base {\n  toJSON() {\n    return JSON.stringify(this);\n  }\n};\n\nconst Validable = (Base) => class extends Base {\n  validate() {\n    for (const [key, val] of Object.entries(this)) {\n      if (val === null || val === undefined) {\n        throw new Error(\`\${key} es requerido\`);\n      }\n    }\n    return true;\n  }\n};\n\nclass Usuario extends Serializable(Validable(class {})) {\n  constructor(nombre, email) {\n    super();\n    this.nombre = nombre;\n    this.email = email;\n  }\n}\n\nconst u = new Usuario("Ana", "ana@dev.com");\nconsole.log(u.toJSON());`,
+        code: `// Mixins como alternativa a herencia múltiple\nconst Serializable = (Base) => class extends Base {\n  toJSON() {\n    return JSON.stringify({ ...this });\n  }\n};\n\nconst Validable = (Base) => class extends Base {\n  validate() {\n    for (const [key, val] of Object.entries(this)) {\n      if (val === null || val === undefined) {\n        throw new Error(\`\${key} es requerido\`);\n      }\n    }\n    return true;\n  }\n};\n\nclass Usuario extends Serializable(Validable(class {})) {\n  constructor(nombre, email) {\n    super();\n    this.nombre = nombre;\n    this.email = email;\n  }\n}\n\nconst u = new Usuario("Ana", "ana@dev.com");\nconsole.log(u.toJSON());`,
+        output: `{"nombre":"Ana","email":"ana@dev.com"}`,
       },
     ],
   },
@@ -387,6 +425,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         explanation: 'Los patrones de diseño resuelven problemas comunes de forma elegante.',
         code: `// Patrón debounce\nfunction debounce(fn, delay) {\n  let timer;\n  return function (...args) {\n    clearTimeout(timer);\n    timer = setTimeout(() => {\n      fn.apply(this, args);\n    }, delay);\n  };\n}\n\nconst buscar = debounce((query) => {\n  console.log("Buscando:", query);\n}, 300);`,
+        output: ``,
       },
       {
         id: 'js-pat-2',
@@ -394,6 +433,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Avanzado',
         code: `// Patrón memoize\nfunction memoize(fn) {\n  const cache = new Map();\n  return function (...args) {\n    const key = JSON.stringify(args);\n    if (cache.has(key)) return cache.get(key);\n    const resultado = fn.apply(this, args);\n    cache.set(key, resultado);\n    return resultado;\n  };\n}\n\nconst fibMemo = memoize(function fib(n) {\n  if (n <= 1) return n;\n  return fibMemo(n - 1) + fibMemo(n - 2);\n});\n\nconsole.log(fibMemo(40));`,
+        output: `102334155`,
       },
       {
         id: 'js-pat-3',
@@ -401,6 +441,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Avanzado',
         code: `// Patrón Observer\nclass EventEmitter {\n  #listeners = {};\n\n  on(event, callback) {\n    (this.#listeners[event] ??= []).push(callback);\n    return this;\n  }\n\n  emit(event, ...args) {\n    (this.#listeners[event] ?? []).forEach(cb => cb(...args));\n    return this;\n  }\n\n  off(event, callback) {\n    this.#listeners[event] = (this.#listeners[event] ?? [])\n      .filter(cb => cb !== callback);\n    return this;\n  }\n}\n\nconst bus = new EventEmitter();\nbus.on("mensaje", (msg) => console.log(\`Recibido: \${msg}\`));\nbus.emit("mensaje", "Hola mundo");`,
+        output: `Recibido: Hola mundo`,
       },
     ],
   },
@@ -415,6 +456,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         explanation: 'async/await simplifica el manejo de operaciones asíncronas.',
         code: `// Promesa básica\nconst esperar = (ms) => new Promise(resolve => {\n  setTimeout(resolve, ms);\n});\n\nasync function main() {\n  console.log("Inicio");\n  await esperar(1000);\n  console.log("Fin");\n}\n\nmain();`,
+        output: `Inicio\nFin`,
       },
       {
         id: 'js-async-2',
@@ -422,6 +464,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Avanzado',
         code: `// Promise.all y Promise.race\nasync function obtenerUsuario(id) {\n  const res = await fetch(\`/api/users/\${id}\`);\n  return res.json();\n}\n\nasync function obtenerTodos() {\n  try {\n    const [u1, u2, u3] = await Promise.all([\n      obtenerUsuario(1),\n      obtenerUsuario(2),\n      obtenerUsuario(3),\n    ]);\n    console.log(u1, u2, u3);\n  } catch (error) {\n    console.error("Error:", error.message);\n  }\n}`,
+        output: ``,
       },
       {
         id: 'js-async-3',
@@ -447,6 +490,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         explanation: 'Encuentra dos números que sumen un target. Clásico de entrevistas.',
         code: `// Enfoque bruto O(n²)\nfunction twoSum(nums, target) {\n  for (let i = 0; i < nums.length; i++) {\n    for (let j = i + 1; j < nums.length; j++) {\n      if (nums[i] + nums[j] === target) {\n        return [i, j];\n      }\n    }\n  }\n  return [];\n}\n\nconsole.log(twoSum([2, 7, 11, 15], 9));`,
+        output: `[ 0, 1 ]`,
       },
       {
         id: 'js-twosum-2',
@@ -454,6 +498,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Avanzado',
         code: `// Enfoque óptimo O(n) con Map\nfunction twoSum(nums, target) {\n  const visto = new Map();\n  for (let i = 0; i < nums.length; i++) {\n    const complemento = target - nums[i];\n    if (visto.has(complemento)) {\n      return [visto.get(complemento), i];\n    }\n    visto.set(nums[i], i);\n  }\n  return [];\n}\n\nconsole.log(twoSum([2, 7, 11, 15], 9));`,
+        output: `[ 0, 1 ]`,
       },
       {
         id: 'js-twosum-3',
@@ -461,6 +506,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Avanzado',
         code: `// Three Sum (variante avanzada)\nfunction threeSum(nums, target = 0) {\n  nums.sort((a, b) => a - b);\n  const resultado = [];\n  for (let i = 0; i < nums.length - 2; i++) {\n    if (i > 0 && nums[i] === nums[i - 1]) continue;\n    let izq = i + 1;\n    let der = nums.length - 1;\n    while (izq < der) {\n      const suma = nums[i] + nums[izq] + nums[der];\n      if (suma === target) {\n        resultado.push([nums[i], nums[izq], nums[der]]);\n        izq++; der--;\n      } else if (suma < target) izq++;\n      else der--;\n    }\n  }\n  return resultado;\n}\n\nconsole.log(threeSum([-1, 0, 1, 2, -1, -4]));`,
+        output: `[ [ -1, -1, 2 ], [ -1, 0, 1 ] ]`,
       },
     ],
   },
@@ -475,6 +521,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         explanation: 'Un palíndromo se lee igual al derecho y al revés.',
         code: `function esPalindromo(s) {\n  const limpio = s.toLowerCase().replace(/\\s/g, "");\n  return limpio === limpio.split("").reverse().join("");\n}\n\nconsole.log(esPalindromo("ana"));\nconsole.log(esPalindromo("hola"));`,
+        output: `true\nfalse`,
       },
       {
         id: 'js-palin-2',
@@ -482,6 +529,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Avanzado',
         code: `// Palíndromo ignorando no alfanuméricos\nfunction esPalindromo(s) {\n  const limpio = s.toLowerCase().replace(/[^a-z0-9]/g, "");\n  let izq = 0;\n  let der = limpio.length - 1;\n  while (izq < der) {\n    if (limpio[izq] !== limpio[der]) return false;\n    izq++;\n    der--;\n  }\n  return true;\n}\n\nconst casos = ["racecar", "hello", "A man a plan a canal Panama"];\ncasos.forEach(c => console.log(\`\${c}: \${esPalindromo(c)}\`));`,
+        output: `racecar: true\nhello: false\nA man a plan a canal Panama: true`,
       },
       {
         id: 'js-palin-3',
@@ -489,6 +537,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Avanzado',
         code: `// Palíndromo más largo en un string\nfunction palindromoMasLargo(s) {\n  let resultado = "";\n  function expandir(izq, der) {\n    while (izq >= 0 && der < s.length && s[izq] === s[der]) {\n      const sub = s.slice(izq, der + 1);\n      if (sub.length > resultado.length) resultado = sub;\n      izq--; der++;\n    }\n  }\n  for (let i = 0; i < s.length; i++) {\n    expandir(i, i);\n    expandir(i, i + 1);\n  }\n  return resultado;\n}\n\nconsole.log(palindromoMasLargo("babad"));\nconsole.log(palindromoMasLargo("cbbd"));`,
+        output: `bab\nbb`,
       },
     ],
   },
@@ -503,6 +552,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         explanation: 'Aplanar convierte un array anidado en uno de un solo nivel.',
         code: `// Aplanar un nivel con concat\nfunction aplanar(arr) {\n  return [].concat(...arr);\n}\n\nconst anidado = [1, [2, 3], [4, 5]];\nconsole.log(aplanar(anidado));`,
+        output: `[ 1, 2, 3, 4, 5 ]`,
       },
       {
         id: 'js-flat-2',
@@ -510,6 +560,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Avanzado',
         code: `// Aplanar recursivo (profundidad infinita)\nfunction aplanar(arr) {\n  return arr.reduce((acc, item) =>\n    Array.isArray(item)\n      ? acc.concat(aplanar(item))\n      : acc.concat(item),\n  []);\n}\n\nconst anidado = [1, [2, 3], [4, [5, 6]], 7];\nconsole.log(aplanar(anidado));`,
+        output: `[ 1, 2, 3, 4, 5, 6, 7 ]`,
       },
       {
         id: 'js-flat-3',
@@ -517,6 +568,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Avanzado',
         code: `// Aplanar con profundidad configurable\nfunction aplanar(arr, depth = Infinity) {\n  if (depth <= 0) return [...arr];\n  return arr.reduce((acc, item) =>\n    Array.isArray(item)\n      ? acc.concat(aplanar(item, depth - 1))\n      : acc.concat(item),\n  []);\n}\n\nconst profundo = [1, [2, [3, [4, [5]]]]];\nconsole.log(aplanar(profundo, 2));\nconsole.log(aplanar(profundo));`,
+        output: `[ 1, 2, 3, [ 4, [ 5 ] ] ]\n[ 1, 2, 3, 4, 5 ]`,
       },
     ],
   },
@@ -531,6 +583,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         explanation: 'Dos palabras son anagramas si tienen las mismas letras reordenadas.',
         code: `function sonAnagramas(a, b) {\n  const ordenar = (s) => s.toLowerCase().split("").sort().join("");\n  return ordenar(a) === ordenar(b);\n}\n\nconsole.log(sonAnagramas("listen", "silent"));\nconsole.log(sonAnagramas("hola", "mundo"));`,
+        output: `true\nfalse`,
       },
       {
         id: 'js-anag-2',
@@ -538,6 +591,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Avanzado',
         code: `// Anagramas con frecuencia de caracteres\nfunction sonAnagramas(a, b) {\n  if (a.length !== b.length) return false;\n  const freq = {};\n  for (const c of a.toLowerCase()) {\n    freq[c] = (freq[c] || 0) + 1;\n  }\n  for (const c of b.toLowerCase()) {\n    if (!freq[c]) return false;\n    freq[c]--;\n  }\n  return true;\n}\n\nconsole.log(sonAnagramas("listen", "silent"));\nconsole.log(sonAnagramas("abc", "abd"));`,
+        output: `true\nfalse`,
       },
       {
         id: 'js-anag-3',
@@ -545,6 +599,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Avanzado',
         code: `// Agrupar anagramas estilo LeetCode\nfunction agruparAnagramas(strs) {\n  const grupos = new Map();\n  for (const s of strs) {\n    const clave = s.split("").sort().join("");\n    const grupo = grupos.get(clave) || [];\n    grupo.push(s);\n    grupos.set(clave, grupo);\n  }\n  return [...grupos.values()];\n}\n\nconst resultado = agruparAnagramas(\n  ["eat", "tea", "tan", "ate", "nat", "bat"]\n);\nresultado.forEach(g => console.log(g));`,
+        output: `[ 'eat', 'tea', 'ate' ]\n[ 'tan', 'nat' ]\n[ 'bat' ]`,
       },
     ],
   },
@@ -559,6 +614,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         explanation: 'Búsqueda binaria divide el espacio a la mitad en cada paso.',
         code: `function busquedaBinaria(arr, target) {\n  let izq = 0;\n  let der = arr.length - 1;\n  while (izq <= der) {\n    const mid = Math.floor((izq + der) / 2);\n    if (arr[mid] === target) return mid;\n    if (arr[mid] < target) izq = mid + 1;\n    else der = mid - 1;\n  }\n  return -1;\n}\n\nconsole.log(busquedaBinaria([1, 3, 5, 7, 9], 5));`,
+        output: `2`,
       },
       {
         id: 'js-binsearch-2',
@@ -566,6 +622,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 2,
         difficulty: 'Avanzado',
         code: `// Búsqueda binaria recursiva\nfunction buscar(arr, target, izq = 0, der = arr.length - 1) {\n  if (izq > der) return -1;\n  const mid = Math.floor((izq + der) / 2);\n  if (arr[mid] === target) return mid;\n  if (arr[mid] < target) {\n    return buscar(arr, target, mid + 1, der);\n  }\n  return buscar(arr, target, izq, mid - 1);\n}\n\nconsole.log(buscar([2, 4, 6, 8, 10, 12], 8));`,
+        output: `3`,
       },
       {
         id: 'js-binsearch-3',
@@ -573,6 +630,7 @@ export const JAVASCRIPT_CONCEPTS: Concept[] = [
         exerciseNumber: 3,
         difficulty: 'Avanzado',
         code: `// Encontrar punto de inserción\nfunction insertPos(arr, target) {\n  let izq = 0;\n  let der = arr.length;\n  while (izq < der) {\n    const mid = Math.floor((izq + der) / 2);\n    if (arr[mid] < target) izq = mid + 1;\n    else der = mid;\n  }\n  return izq;\n}\n\nfunction insertarOrdenado(arr, val) {\n  const pos = insertPos(arr, val);\n  arr.splice(pos, 0, val);\n  return arr;\n}\n\nconst nums = [1, 3, 5, 7, 9];\nconsole.log(insertarOrdenado(nums, 4));\nconsole.log(insertarOrdenado(nums, 6));`,
+        output: `[ 1, 3, 4, 5, 7, 9 ]\n[ 1, 3, 4, 5, 6, 7, 9 ]`,
       },
     ],
   },

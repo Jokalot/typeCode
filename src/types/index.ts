@@ -9,6 +9,7 @@ export interface Snippet {
   difficulty: Difficulty;
   code: string;
   explanation?: string;  // descripción corta del concepto (para Modo Learn)
+  output?: string;       // salida esperada al ejecutar el código (precalculada)
 }
 
 export interface Concept {

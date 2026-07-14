@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { RotateCw, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Timer, BookOpen, ArrowRight, Keyboard, ClipboardList } from 'lucide-react';
+import { RotateCw, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Timer, BookOpen, ArrowRight, Keyboard, ClipboardList, Terminal } from 'lucide-react';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
 import { LanguageIcon } from './LanguageIcon';
@@ -193,7 +193,7 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
             </div>
 
             {finished && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 sm:gap-4 p-4"
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 sm:gap-3 p-4 overflow-y-auto"
                 style={{ background: 'rgba(26,23,20,0.95)' }}>
                 <p className="text-xs uppercase tracking-widest text-muted-foreground">Resultado</p>
                 <p className="text-4xl sm:text-5xl font-bold font-mono" style={{ color: accentColor }}>{wpm}</p>
@@ -202,7 +202,22 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
                   <span>{errors} errores</span>
                   <span style={{ color: accentColor }}>WPM</span>
                 </div>
-                <div className="flex gap-2 mt-2 flex-wrap justify-center">
+
+                {snippet.output !== undefined && (
+                  <div className="w-full max-w-md rounded-lg overflow-hidden border border-white/10 text-left">
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 bg-white/5">
+                      <Terminal className="w-2.5 h-2.5 text-muted-foreground" />
+                      <span className="text-[9px] uppercase tracking-wider text-muted-foreground">Salida</span>
+                    </div>
+                    <pre className="text-[10px] sm:text-[11px] font-mono px-2.5 py-1.5 whitespace-pre-wrap break-words max-h-16 overflow-y-auto m-0" style={{ color: '#8fc78a' }}>
+                      {snippet.output.trim() === ''
+                        ? '(sin salida — este código solo define funciones/clases)'
+                        : snippet.output}
+                    </pre>
+                  </div>
+                )}
+
+                <div className="flex gap-2 mt-1 flex-wrap justify-center">
                   <Button onClick={reset} style={{ background: accentColor, color: '#fff', border: 'none' }} className="gap-1.5">
                     <RotateCw className="w-3.5 h-3.5" /> Reintentar
                   </Button>
