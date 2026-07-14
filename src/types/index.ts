@@ -10,6 +10,7 @@ export interface Snippet {
   code: string;
   explanation?: string;  // descripción corta del concepto (para Modo Learn)
   output?: string;       // salida esperada al ejecutar el código (precalculada)
+  outputExplanation?: string; // por qué la salida es esa (para el panel de resultado)
 }
 
 export interface Concept {

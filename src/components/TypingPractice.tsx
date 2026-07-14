@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { RotateCw, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Timer, BookOpen, ArrowRight, Keyboard, ClipboardList, Terminal } from 'lucide-react';
+import { RotateCw, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Timer, BookOpen, ArrowRight, Keyboard, ClipboardList, Terminal, Lightbulb } from 'lucide-react';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
 import { LanguageIcon } from './LanguageIcon';
@@ -173,7 +173,8 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
               </Button>
             </div>
             <div ref={displayRef}
-              className="p-3 sm:p-6 font-mono text-xs sm:text-sm leading-7 sm:leading-8 whitespace-pre overflow-x-auto select-none min-h-[120px] sm:min-h-[160px]"
+              className={`p-3 sm:p-6 font-mono text-xs sm:text-sm leading-7 sm:leading-8 whitespace-pre overflow-x-auto select-none transition-all ${finished ? 'min-h-[340px] sm:min-h-[380px]' : 'min-h-[120px] sm:min-h-[160px]'
+                }`}
               style={{ background: '#1a1714' }}>
               {chars.map((ch, i) => {
                 const state = charStates[i];
@@ -204,16 +205,38 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
                 </div>
 
                 {snippet.output !== undefined && (
-                  <div className="w-full max-w-md rounded-lg overflow-hidden border border-white/10 text-left">
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 bg-white/5">
-                      <Terminal className="w-2.5 h-2.5 text-muted-foreground" />
-                      <span className="text-[9px] uppercase tracking-wider text-muted-foreground">Salida</span>
+                  <div
+                    className="w-full max-w-lg rounded-xl overflow-hidden text-left shadow-lg"
+                    style={{ background: '#100e0c', border: `1px solid ${accentColor}30` }}
+                  >
+                    <div
+                      className="flex items-center gap-1.5 px-3 py-1.5"
+                      style={{ background: `${accentColor}14`, borderBottom: `1px solid ${accentColor}25` }}
+                    >
+                      <Terminal className="w-3 h-3" style={{ color: accentColor }} />
+                      <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: accentColor }}>
+                        Salida
+                      </span>
                     </div>
-                    <pre className="text-[10px] sm:text-[11px] font-mono px-2.5 py-1.5 whitespace-pre-wrap break-words max-h-16 overflow-y-auto m-0" style={{ color: '#8fc78a' }}>
+                    <pre
+                      className="text-[11px] sm:text-xs font-mono leading-relaxed px-3 py-2 whitespace-pre-wrap break-words max-h-16 overflow-y-auto m-0"
+                      style={{ color: snippet.output.trim() === '' ? '#8a8578' : '#8fc78a', fontStyle: snippet.output.trim() === '' ? 'italic' : 'normal' }}
+                    >
                       {snippet.output.trim() === ''
-                        ? '(sin salida — este código solo define funciones/clases)'
+                        ? 'Sin salida — este código solo define funciones/clases.'
                         : snippet.output}
                     </pre>
+                    {snippet.outputExplanation && (
+                      <div
+                        className="flex items-start gap-1.5 px-3 py-2"
+                        style={{ background: 'rgba(255,255,255,0.03)', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+                      >
+                        <Lightbulb className="w-3 h-3 flex-shrink-0 mt-0.5" style={{ color: accentColor }} />
+                        <p className="text-[10px] sm:text-[11px] leading-relaxed text-left text-muted-foreground">
+                          {snippet.outputExplanation}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 )}
 

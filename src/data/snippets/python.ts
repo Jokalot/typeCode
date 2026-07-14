@@ -16,6 +16,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'En Python las variables no necesitan declaración de tipo.',
         code: `nombre = "Mundo"\nedad = 25\nactivo = True\n\nprint(nombre)\nprint(edad)`,
         output: `Mundo\n25`,
+        outputExplanation: `print(nombre) y print(edad) muestran los valores tal cual se asignaron arriba.`,
       },
       {
         id: 'py-vars-2',
@@ -24,6 +25,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         code: `# Tipos de datos básicos\ntexto = "Hola"\nnumero = 42\ndecimal = 3.14\nlista = [1, 2, 3]\n\nprint(type(texto))\nprint(type(numero))`,
         output: `<class 'str'>\n<class 'int'>`,
+        outputExplanation: `type() devuelve la clase de cada valor: "Hola" es str y 42 es int.`,
       },
       {
         id: 'py-vars-3',
@@ -32,6 +34,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         code: `# Intercambio de variables y múltiple asignación\na, b = 10, 20\na, b = b, a\n\nx = y = z = 0\nprint(a, b, x)`,
         output: `20 10 0`,
+        outputExplanation: `a, b = b, a intercambia los valores (a pasa a 20, b a 10); x, y, z quedan en 0 por la asignación múltiple.`,
       },
     ],
   },
@@ -47,6 +50,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'if / elif / else permite ejecutar código según condiciones.',
         code: `temperatura = 22\n\nif temperatura > 30:\n    print("Hace calor")\nelse:\n    print("Temperatura agradable")`,
         output: `Temperatura agradable`,
+        outputExplanation: `22 no es mayor que 30, así que se ejecuta el bloque else.`,
       },
       {
         id: 'py-cond-2',
@@ -55,6 +59,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         code: `nota = 85\n\nif nota >= 90:\n    resultado = "Excelente"\nelif nota >= 70:\n    resultado = "Aprobado"\nelse:\n    resultado = "Reprobado"\n\nprint(resultado)`,
         output: `Aprobado`,
+        outputExplanation: `85 es mayor o igual a 70 pero menor que 90, así que cae en la rama elif y resultado es "Aprobado".`,
       },
       {
         id: 'py-cond-3',
@@ -63,6 +68,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         code: `# Operador ternario y operadores lógicos\nedad = 20\nes_adulto = "Sí" if edad >= 18 else "No"\n\ntiene_id = True\npuede_entrar = es_adulto == "Sí" and tiene_id\nprint(f"Acceso: {puede_entrar}")`,
         output: `Acceso: True`,
+        outputExplanation: `edad >= 18 es True, así que es_adulto es "Sí"; junto con tiene_id=True, puede_entrar también es True.`,
       },
     ],
   },
@@ -78,6 +84,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'El ciclo for itera sobre cualquier secuencia.',
         code: `frutas = ["manzana", "naranja", "uva"]\n\nfor fruta in frutas:\n    print(f"Me gusta la {fruta}")`,
         output: `Me gusta la manzana\nMe gusta la naranja\nMe gusta la uva`,
+        outputExplanation: `El for recorre la lista en orden e imprime una línea por cada fruta.`,
       },
       {
         id: 'py-for-2',
@@ -86,6 +93,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         code: `# range() genera secuencias numéricas\nfor i in range(1, 6):\n    print(f"Número: {i}")\n\n# enumerate() da índice y valor\ncolores = ["rojo", "verde", "azul"]\nfor i, color in enumerate(colores):\n    print(f"{i}: {color}")`,
         output: `Número: 1\nNúmero: 2\nNúmero: 3\nNúmero: 4\nNúmero: 5\n0: rojo\n1: verde\n2: azul`,
+        outputExplanation: `range(1, 6) genera del 1 al 5; enumerate agrega el índice (desde 0) a cada color.`,
       },
       {
         id: 'py-for-3',
@@ -94,6 +102,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         code: `# Comprensión de listas con for\nnumeros = [1, 2, 3, 4, 5, 6, 7, 8]\n\ncuadrados = [x ** 2 for x in numeros]\npares = [x for x in numeros if x % 2 == 0]\n\nprint(cuadrados)\nprint(pares)`,
         output: `[1, 4, 9, 16, 25, 36, 49, 64]\n[2, 4, 6, 8]`,
+        outputExplanation: `La primera comprensión eleva cada número al cuadrado; la segunda filtra solo los pares.`,
       },
     ],
   },
@@ -109,6 +118,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'El ciclo while repite mientras la condición sea verdadera.',
         code: `contador = 0\n\nwhile contador < 5:\n    print(f"Contador: {contador}")\n    contador += 1\n\nprint("Listo!")`,
         output: `Contador: 0\nContador: 1\nContador: 2\nContador: 3\nContador: 4\nListo!`,
+        outputExplanation: `El bucle imprime contador antes de incrementarlo, de 0 a 4, y termina cuando contador < 5 es False.`,
       },
       {
         id: 'py-while-2',
@@ -117,6 +127,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         code: `# While con break y continue\nnumero = 0\nwhile True:\n    numero += 1\n    if numero % 2 == 0:\n        continue\n    if numero > 10:\n        break\n    print(numero)`,
         output: `1\n3\n5\n7\n9`,
+        outputExplanation: `continue salta los pares antes de imprimir; break detiene el bucle al superar 10, dejando solo los impares 1-9.`,
       },
       {
         id: 'py-while-3',
@@ -125,6 +136,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         code: `# Simulación de menú interactivo\nopciones = ["Iniciar", "Config", "Salir"]\nseleccion = 0\n\nwhile seleccion != 3:\n    for i, op in enumerate(opciones, 1):\n        print(f"{i}. {op}")\n    seleccion = 3  # simular salida\n\nprint("Adiós!")`,
         output: `1. Iniciar\n2. Config\n3. Salir\nAdiós!`,
+        outputExplanation: `seleccion se fuerza a 3 tras la primera vuelta, así que el menú solo se imprime una vez antes de salir.`,
       },
     ],
   },
@@ -140,6 +152,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Las funciones agrupan código reutilizable con def.',
         code: `def saludar(nombre):\n    return f"Hola, {nombre}!"\n\nprint(saludar("Ana"))\nprint(saludar("Carlos"))`,
         output: `Hola, Ana!\nHola, Carlos!`,
+        outputExplanation: `saludar() devuelve un string formateado con el nombre recibido en cada llamada.`,
       },
       {
         id: 'py-func-2',
@@ -148,6 +161,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         code: `# Parámetros con valor por defecto\ndef saludar(nombre, saludo="Hola"):\n    mensaje = f"{saludo}, {nombre}!"\n    return mensaje\n\nprint(saludar("Ana"))\nprint(saludar("Carlos", "Buenos días"))`,
         output: `Hola, Ana!\nBuenos días, Carlos!`,
+        outputExplanation: `La primera llamada usa el saludo por defecto "Hola"; la segunda lo sobrescribe con "Buenos días".`,
       },
       {
         id: 'py-func-3',
@@ -156,6 +170,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Principiante',
         code: `# Funciones con *args y **kwargs\ndef resumen(*args, **kwargs):\n    total = sum(args)\n    print(f"Suma: {total}")\n    for k, v in kwargs.items():\n        print(f"{k} = {v}")\n\nresumen(1, 2, 3, nombre="Ana", rol="dev")`,
         output: `Suma: 6\nnombre = Ana\nrol = dev`,
+        outputExplanation: `sum(args) suma los posicionales (1+2+3=6); kwargs.items() recorre los argumentos nombrados.`,
       },
     ],
   },
@@ -175,6 +190,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Las listas son colecciones ordenadas y mutables.',
         code: `numeros = [1, 2, 3, 4, 5]\nnumeros.append(6)\nnumeros.insert(0, 0)\n\nprint(numeros)\nprint(len(numeros))`,
         output: `[0, 1, 2, 3, 4, 5, 6]\n7`,
+        outputExplanation: `append agrega 6 al final e insert agrega 0 al inicio, dejando 7 elementos en total.`,
       },
       {
         id: 'py-list-2',
@@ -183,6 +199,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Slicing y operaciones\nnumeros = [10, 20, 30, 40, 50]\n\nprimeros = numeros[:3]\nultimos = numeros[-2:]\nreverso = numeros[::-1]\n\nprint(primeros)\nprint(reverso)`,
         output: `[10, 20, 30]\n[50, 40, 30, 20, 10]`,
+        outputExplanation: `El slicing [:3] toma los 3 primeros y [::-1] invierte la lista completa.`,
       },
       {
         id: 'py-list-3',
@@ -191,6 +208,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Comprensión de listas avanzada\nnumeros = [1, 2, 3, 4, 5, 6, 7, 8]\n\ncuadrados = [x ** 2 for x in numeros]\npares = [x for x in numeros if x % 2 == 0]\nmatriz = [[j * i for j in range(3)] for i in range(3)]\n\nprint(cuadrados)\nprint(matriz)`,
         output: `[1, 4, 9, 16, 25, 36, 49, 64]\n[[0, 0, 0], [0, 1, 2], [0, 2, 4]]`,
+        outputExplanation: `cuadrados eleva cada número al cuadrado; matriz es una comprensión anidada donde cada celda es fila×columna.`,
       },
     ],
   },
@@ -206,6 +224,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Los diccionarios almacenan pares clave-valor.',
         code: `persona = {\n    "nombre": "Carlos",\n    "edad": 25,\n    "ciudad": "Madrid"\n}\n\nprint(persona["nombre"])\npersona["email"] = "carlos@email.com"`,
         output: `Carlos`,
+        outputExplanation: `Se accede al valor de la clave "nombre"; la clave "email" se agrega recién después del print.`,
       },
       {
         id: 'py-dict-2',
@@ -214,6 +233,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Iteración sobre diccionarios\npersona = {"nombre": "Ana", "edad": 28, "rol": "dev"}\n\nfor clave, valor in persona.items():\n    print(f"{clave}: {valor}")\n\nclaves = list(persona.keys())\nvalores = list(persona.values())`,
         output: `nombre: Ana\nedad: 28\nrol: dev`,
+        outputExplanation: `El for recorre cada par clave-valor del diccionario en el orden en que fueron definidos.`,
       },
       {
         id: 'py-dict-3',
@@ -222,6 +242,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Comprensión de diccionarios y métodos\nnotas = {"Ana": 90, "Luis": 65, "Eva": 85}\n\naprobados = {k: v for k, v in notas.items() if v >= 70}\npromedio = sum(notas.values()) / len(notas)\n\nconfig = {}.fromkeys(["host", "port", "db"], "N/A")\nprint(aprobados)\nprint(f"Promedio: {promedio:.1f}")`,
         output: `{'Ana': 90, 'Eva': 85}\nPromedio: 80.0`,
+        outputExplanation: `Solo Ana y Eva tienen nota >= 70; el promedio es (90+65+85)/3 = 80.0.`,
       },
     ],
   },
@@ -237,6 +258,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Lambda crea funciones anónimas en una línea.',
         code: `doble = lambda x: x * 2\nsumar = lambda a, b: a + b\n\nprint(doble(5))\nprint(sumar(3, 7))`,
         output: `10\n10`,
+        outputExplanation: `doble(5) es 5×2=10 y sumar(3,7) es 3+7=10 — coinciden en valor por los números elegidos.`,
       },
       {
         id: 'py-lambda-2',
@@ -245,6 +267,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# map() y filter() con lambda\nnumeros = [3, 1, 4, 1, 5, 9, 2, 6]\n\ndobles = list(map(lambda x: x * 2, numeros))\nmayores = list(filter(lambda x: x > 3, numeros))\n\nprint(dobles)\nprint(mayores)`,
         output: `[6, 2, 8, 2, 10, 18, 4, 12]\n[4, 5, 9, 6]`,
+        outputExplanation: `map duplica cada número; filter conserva solo los mayores a 3, ambos preservando el orden original.`,
       },
       {
         id: 'py-lambda-3',
@@ -253,6 +276,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Combinando map, filter y sorted\nproductos = [\n    {"nombre": "Laptop", "precio": 1200},\n    {"nombre": "Mouse", "precio": 25},\n    {"nombre": "Monitor", "precio": 350},\n]\n\ncaros = list(filter(lambda p: p["precio"] > 100, productos))\nnombres = list(map(lambda p: p["nombre"], caros))\nordenados = sorted(productos, key=lambda p: p["precio"])\nprint(nombres)`,
         output: `['Laptop', 'Monitor']`,
+        outputExplanation: `filter conserva Laptop y Monitor (precio > 100) y map extrae solo sus nombres.`,
       },
     ],
   },
@@ -268,6 +292,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'La recursión es una función que se llama a sí misma con un caso base.',
         code: `def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(5))\nprint(factorial(6))`,
         output: `120\n720`,
+        outputExplanation: `factorial(5) = 5×4×3×2×1 = 120 y factorial(6) = 6×120 = 720.`,
       },
       {
         id: 'py-rec-2',
@@ -276,6 +301,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Fibonacci recursivo\ndef fibonacci(n):\n    if n <= 1:\n        return n\n    return fibonacci(n - 1) + fibonacci(n - 2)\n\nfor i in range(8):\n    print(fibonacci(i), end=" ")`,
         output: `0 1 1 2 3 5 8 13 `,
+        outputExplanation: `Cada fibonacci(i) es la suma de los dos anteriores, empezando en 0 y 1: 0,1,1,2,3,5,8,13.`,
       },
       {
         id: 'py-rec-3',
@@ -284,6 +310,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Suma de dígitos recursiva\ndef suma_digitos(n):\n    if n < 10:\n        return n\n    return n % 10 + suma_digitos(n // 10)\n\ndef potencia(base, exp):\n    if exp == 0:\n        return 1\n    return base * potencia(base, exp - 1)\n\nprint(suma_digitos(1234))\nprint(potencia(2, 10))`,
         output: `10\n1024`,
+        outputExplanation: `suma_digitos suma 1+2+3+4=10; potencia(2,10) es 2 elevado a la 10 = 1024.`,
       },
     ],
   },
@@ -299,6 +326,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Python ofrece sorted() y .sort() para ordenar colecciones.',
         code: `numeros = [64, 34, 25, 12, 22, 11, 90]\n\nordenados = sorted(numeros)\nreverso = sorted(numeros, reverse=True)\n\nprint(ordenados)\nprint(reverso)`,
         output: `[11, 12, 22, 25, 34, 64, 90]\n[90, 64, 34, 25, 22, 12, 11]`,
+        outputExplanation: `sorted() ordena ascendente y reverse=True invierte el orden a descendente.`,
       },
       {
         id: 'py-sort-2',
@@ -307,6 +335,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Ordenar objetos con key\nproductos = [\n    {"nombre": "Laptop", "precio": 1200},\n    {"nombre": "Mouse", "precio": 25},\n    {"nombre": "Monitor", "precio": 350},\n]\n\npor_precio = sorted(productos, key=lambda p: p["precio"])\nmas_caro = max(productos, key=lambda p: p["precio"])\nprint(mas_caro["nombre"])`,
         output: `Laptop`,
+        outputExplanation: `max() con key busca el producto de mayor precio, que es Laptop (1200).`,
       },
       {
         id: 'py-sort-3',
@@ -315,6 +344,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Bubble sort implementado\ndef bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr\n\ndatos = [64, 34, 25, 12, 22, 11, 90]\nprint(bubble_sort(datos))`,
         output: `[11, 12, 22, 25, 34, 64, 90]`,
+        outputExplanation: `Bubble sort compara pares adyacentes y los intercambia hasta dejar la lista ordenada ascendente.`,
       },
     ],
   },
@@ -334,6 +364,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'try/except captura errores en tiempo de ejecución.',
         code: `try:\n    resultado = 10 / 0\nexcept ZeroDivisionError:\n    print("No se puede dividir por cero")\nfinally:\n    print("Operación finalizada")`,
         output: `No se puede dividir por cero\nOperación finalizada`,
+        outputExplanation: `La división por cero lanza ZeroDivisionError, que el except captura; finally siempre se ejecuta al final.`,
       },
       {
         id: 'py-err-2',
@@ -342,6 +373,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Función con manejo robusto\ndef dividir(a, b):\n    try:\n        resultado = a / b\n        return resultado\n    except ZeroDivisionError:\n        print("Error: división por cero")\n        return None\n    except TypeError:\n        print("Error: tipos inválidos")\n        return None\n\nprint(dividir(10, 2))\nprint(dividir(5, 0))`,
         output: `5.0\nError: división por cero\nNone`,
+        outputExplanation: `dividir(10,2) da 5.0 sin error; dividir(5,0) cae en el except, imprime el mensaje y retorna None.`,
       },
       {
         id: 'py-err-3',
@@ -350,6 +382,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Excepciones personalizadas\nclass EdadInvalidaError(Exception):\n    def __init__(self, edad):\n        self.edad = edad\n        super().__init__(f"Edad inválida: {edad}")\n\ndef validar_edad(edad):\n    if edad < 0 or edad > 150:\n        raise EdadInvalidaError(edad)\n    return True\n\ntry:\n    validar_edad(200)\nexcept EdadInvalidaError as e:\n    print(e)`,
         output: `Edad inválida: 200`,
+        outputExplanation: `validar_edad(200) supera el límite de 150 y lanza la excepción personalizada con su mensaje.`,
       },
     ],
   },
@@ -365,6 +398,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Las clases son plantillas para crear objetos con atributos y métodos.',
         code: `class Persona:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n\n    def presentarse(self):\n        return f"Soy {self.nombre}, tengo {self.edad} años"\n\np = Persona("Ana", 30)\nprint(p.presentarse())`,
         output: `Soy Ana, tengo 30 años`,
+        outputExplanation: `presentarse() arma un string con los atributos nombre y edad del objeto p.`,
       },
       {
         id: 'py-cls-2',
@@ -373,6 +407,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Métodos especiales\nclass Persona:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n\n    def __repr__(self):\n        return f"Persona({self.nombre!r}, {self.edad})"\n\n    def __eq__(self, other):\n        return self.nombre == other.nombre\n\np1 = Persona("Ana", 30)\np2 = Persona("Ana", 25)\nprint(p1 == p2)`,
         output: `True`,
+        outputExplanation: `__eq__ compara solo por nombre, así que p1 == p2 es True aunque tengan distinta edad.`,
       },
       {
         id: 'py-cls-3',
@@ -381,6 +416,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Clase con propiedades y validación\nclass CuentaBancaria:\n    def __init__(self, titular, saldo=0):\n        self.titular = titular\n        self._saldo = saldo\n\n    @property\n    def saldo(self):\n        return self._saldo\n\n    def depositar(self, monto):\n        if monto > 0:\n            self._saldo += monto\n\n    def retirar(self, monto):\n        if 0 < monto <= self._saldo:\n            self._saldo -= monto\n\nc = CuentaBancaria("Ana", 1000)\nc.depositar(500)\nprint(c.saldo)`,
         output: `1500`,
+        outputExplanation: `saldo inicia en 1000 y depositar(500) lo incrementa a 1500.`,
       },
     ],
   },
@@ -396,6 +432,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'La herencia permite crear clases hijas que extienden la funcionalidad.',
         code: `class Animal:\n    def __init__(self, nombre):\n        self.nombre = nombre\n\n    def hablar(self):\n        raise NotImplementedError\n\nclass Perro(Animal):\n    def hablar(self):\n        return f"{self.nombre} dice: ¡Guau!"\n\nrex = Perro("Rex")\nprint(rex.hablar())`,
         output: `Rex dice: ¡Guau!`,
+        outputExplanation: `Perro sobrescribe hablar(); rex.hablar() usa esa versión, no la de Animal.`,
       },
       {
         id: 'py-her-2',
@@ -404,6 +441,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Polimorfismo con herencia\nclass Animal:\n    def __init__(self, nombre):\n        self.nombre = nombre\n    def hablar(self):\n        raise NotImplementedError\n\nclass Perro(Animal):\n    def hablar(self):\n        return f"{self.nombre}: ¡Guau!"\n\nclass Gato(Animal):\n    def hablar(self):\n        return f"{self.nombre}: ¡Miau!"\n\nanimales = [Perro("Rex"), Gato("Luna")]\nfor a in animales:\n    print(a.hablar())`,
         output: `Rex: ¡Guau!\nLuna: ¡Miau!`,
+        outputExplanation: `Cada clase hija implementa hablar() a su manera; el for llama al método correcto por polimorfismo.`,
       },
       {
         id: 'py-her-3',
@@ -412,6 +450,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Intermedio',
         code: `# Herencia múltiple y super()\nclass Volador:\n    def volar(self):\n        return "Puedo volar"\n\nclass Nadador:\n    def nadar(self):\n        return "Puedo nadar"\n\nclass Pato(Volador, Nadador):\n    def __init__(self, nombre):\n        self.nombre = nombre\n\n    def describir(self):\n        return f"{self.nombre}: {self.volar()} y {self.nadar()}"\n\np = Pato("Donald")\nprint(p.describir())`,
         output: `Donald: Puedo volar y Puedo nadar`,
+        outputExplanation: `Pato hereda de Volador y Nadador, así que puede usar ambos métodos dentro de describir().`,
       },
     ],
   },
@@ -427,6 +466,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Los decoradores envuelven funciones para agregar comportamiento.',
         code: `def mi_decorador(func):\n    def wrapper():\n        print("Antes de la función")\n        func()\n        print("Después de la función")\n    return wrapper\n\n@mi_decorador\ndef saludar():\n    print("¡Hola!")\n\nsaludar()`,
         output: `Antes de la función\n¡Hola!\nDespués de la función`,
+        outputExplanation: `El decorador envuelve saludar(): imprime antes, ejecuta la función original y luego imprime después.`,
       },
       {
         id: 'py-dec-2',
@@ -435,6 +475,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Decorador con argumentos\nimport time\n\ndef cronometrar(func):\n    def wrapper(*args, **kwargs):\n        inicio = time.time()\n        resultado = func(*args, **kwargs)\n        fin = time.time()\n        print(f"{func.__name__} tardó {fin - inicio:.4f}s")\n        return resultado\n    return wrapper\n\n@cronometrar\ndef operacion_lenta():\n    time.sleep(0.1)\n    return "listo"\n\noperacion_lenta()`,
         output: `operacion_lenta tardó 0.1006s`,
+        outputExplanation: `time.sleep(0.1) hace que la función tarde apenas más de 0.1 segundos; el valor exacto varía en cada ejecución.`,
       },
       {
         id: 'py-dec-3',
@@ -443,6 +484,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Decorador con parámetros y functools\nfrom functools import wraps\n\ndef repetir(veces):\n    def decorador(func):\n        @wraps(func)\n        def wrapper(*args, **kwargs):\n            for _ in range(veces):\n                resultado = func(*args, **kwargs)\n            return resultado\n        return wrapper\n    return decorador\n\n@repetir(veces=3)\ndef saludar(nombre):\n    print(f"Hola, {nombre}!")\n\nsaludar("Ana")`,
         output: `Hola, Ana!\nHola, Ana!\nHola, Ana!`,
+        outputExplanation: `El decorador repite la llamada a saludar("Ana") 3 veces, según el parámetro veces=3.`,
       },
     ],
   },
@@ -458,6 +500,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'with gestiona recursos automáticamente (apertura/cierre).',
         code: `# Uso básico de with para archivos\ndef leer_archivo(ruta):\n    try:\n        with open(ruta, "r") as archivo:\n            contenido = archivo.read()\n            return contenido\n    except FileNotFoundError:\n        print(f"No encontrado: {ruta}")\n        return None`,
         output: ``,
+        outputExplanation: `leer_archivo se define pero nunca se llama, así que no hay nada que imprimir.`,
       },
       {
         id: 'py-ctx-2',
@@ -466,6 +509,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Context manager con clase\nclass Temporizador:\n    def __enter__(self):\n        import time\n        self.inicio = time.time()\n        return self\n\n    def __exit__(self, *args):\n        import time\n        self.duracion = time.time() - self.inicio\n        print(f"Tardó {self.duracion:.4f}s")\n\nwith Temporizador() as t:\n    suma = sum(range(1000000))`,
         output: `Tardó 0.0235s`,
+        outputExplanation: `__exit__ mide cuánto tardó el bloque with; el tiempo exacto depende de la velocidad de la máquina.`,
       },
       {
         id: 'py-ctx-3',
@@ -474,6 +518,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Context manager con contextlib\nfrom contextlib import contextmanager\n\n@contextmanager\ndef conexion_db(host):\n    print(f"Conectando a {host}...")\n    conn = {"host": host, "status": "open"}\n    try:\n        yield conn\n    finally:\n        conn["status"] = "closed"\n        print("Conexión cerrada")\n\nwith conexion_db("localhost") as db:\n    print(f"Usando: {db['host']}")`,
         output: `Conectando a localhost...\nUsando: localhost\nConexión cerrada`,
+        outputExplanation: `El generador imprime al conectar (antes del yield) y al finalizar (finally), enmarcando el uso de la conexión.`,
       },
     ],
   },
@@ -493,6 +538,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Encuentra dos números que sumen un target. Clásico de entrevistas.',
         code: `# Enfoque bruto O(n²)\ndef two_sum(nums, target):\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                return [i, j]\n    return []\n\nprint(two_sum([2, 7, 11, 15], 9))`,
         output: `[0, 1]`,
+        outputExplanation: `Los índices 0 y 1 (valores 2 y 7) suman 9, el target buscado.`,
       },
       {
         id: 'py-twosum-2',
@@ -501,6 +547,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Enfoque óptimo O(n) con hash map\ndef two_sum(nums, target):\n    visto = {}\n    for i, num in enumerate(nums):\n        complemento = target - num\n        if complemento in visto:\n            return [visto[complemento], i]\n        visto[num] = i\n    return []\n\nprint(two_sum([2, 7, 11, 15], 9))`,
         output: `[0, 1]`,
+        outputExplanation: `La versión con hash map encuentra el mismo par que la fuerza bruta, pero en una sola pasada.`,
       },
       {
         id: 'py-twosum-3',
@@ -509,6 +556,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Two Sum con todos los pares posibles\ndef two_sum_all(nums, target):\n    visto = {}\n    pares = []\n    for i, num in enumerate(nums):\n        comp = target - num\n        if comp in visto:\n            pares.append((visto[comp], i))\n        visto[num] = i\n    return pares\n\nresultado = two_sum_all([1, 3, 2, 4, 3, 6], 7)\nprint(resultado)`,
         output: `[(1, 3), (3, 4), (0, 5)]`,
+        outputExplanation: `Se listan todos los pares de índices cuyos valores suman 7: (1,3), (3,4) y (0,5).`,
       },
     ],
   },
@@ -524,6 +572,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Un palíndromo se lee igual al derecho y al revés.',
         code: `def es_palindromo(s):\n    limpio = s.lower().replace(" ", "")\n    return limpio == limpio[::-1]\n\nprint(es_palindromo("ana"))\nprint(es_palindromo("hola"))`,
         output: `True\nFalse`,
+        outputExplanation: `"ana" se lee igual al revés (True); "hola" no (False).`,
       },
       {
         id: 'py-palin-2',
@@ -532,6 +581,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Palíndromo ignorando no alfanuméricos\ndef es_palindromo(s: str) -> bool:\n    limpio = "".join(c.lower() for c in s if c.isalnum())\n    return limpio == limpio[::-1]\n\ncasos = ["racecar", "hello", "A man a plan a canal Panama"]\nfor caso in casos:\n    print(f"{caso!r}: {es_palindromo(caso)}")`,
         output: `'racecar': True\n'hello': False\n'A man a plan a canal Panama': True`,
+        outputExplanation: `Se ignoran espacios y mayúsculas antes de comparar; por eso la frase con espacios también es palíndromo.`,
       },
       {
         id: 'py-palin-3',
@@ -540,6 +590,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Palíndromo más largo en un string\ndef palindromo_mas_largo(s):\n    resultado = ""\n    for i in range(len(s)):\n        for j in range(i + 1, len(s) + 1):\n            sub = s[i:j]\n            if sub == sub[::-1] and len(sub) > len(resultado):\n                resultado = sub\n    return resultado\n\nprint(palindromo_mas_largo("babad"))\nprint(palindromo_mas_largo("cbbd"))`,
         output: `bab\nbb`,
+        outputExplanation: `"bab" es el palíndromo más largo dentro de "babad"; en "cbbd" lo es "bb".`,
       },
     ],
   },
@@ -555,6 +606,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Aplanar convierte una lista anidada en una lista plana.',
         code: `# Aplanar un nivel\ndef aplanar(lista):\n    resultado = []\n    for item in lista:\n        if isinstance(item, list):\n            resultado.extend(item)\n        else:\n            resultado.append(item)\n    return resultado\n\nprint(aplanar([1, [2, 3], [4, 5]]))`,
         output: `[1, 2, 3, 4, 5]`,
+        outputExplanation: `extend agrega los elementos de cada sublista al resultado, aplanando un solo nivel.`,
       },
       {
         id: 'py-flat-2',
@@ -563,6 +615,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Aplanar recursivo (profundidad infinita)\ndef aplanar(lista):\n    resultado = []\n    for item in lista:\n        if isinstance(item, list):\n            resultado.extend(aplanar(item))\n        else:\n            resultado.append(item)\n    return resultado\n\nanidada = [1, [2, 3], [4, [5, 6]], 7]\nprint(aplanar(anidada))`,
         output: `[1, 2, 3, 4, 5, 6, 7]`,
+        outputExplanation: `La recursión sigue aplanando cada sublista sin importar cuántos niveles de anidamiento tenga.`,
       },
       {
         id: 'py-flat-3',
@@ -571,6 +624,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Aplanar con generador\ndef aplanar_gen(lista):\n    for item in lista:\n        if isinstance(item, list):\n            yield from aplanar_gen(item)\n        else:\n            yield item\n\nanidada = [1, [2, [3, [4]]], [5, 6]]\nresultado = list(aplanar_gen(anidada))\nprint(resultado)`,
         output: `[1, 2, 3, 4, 5, 6]`,
+        outputExplanation: `yield from entrega cada elemento del generador anidado uno por uno hasta agotar la estructura.`,
       },
     ],
   },
@@ -586,6 +640,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Dos palabras son anagramas si tienen las mismas letras reordenadas.',
         code: `def son_anagramas(a, b):\n    return sorted(a.lower()) == sorted(b.lower())\n\nprint(son_anagramas("listen", "silent"))\nprint(son_anagramas("hola", "mundo"))`,
         output: `True\nFalse`,
+        outputExplanation: `"listen" y "silent" tienen las mismas letras ordenadas (True); "hola" y "mundo" no (False).`,
       },
       {
         id: 'py-anag-2',
@@ -594,6 +649,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Anagramas usando Counter\nfrom collections import Counter\n\ndef son_anagramas(a, b):\n    return Counter(a.lower()) == Counter(b.lower())\n\ndef agrupar_anagramas(palabras):\n    grupos = {}\n    for p in palabras:\n        clave = tuple(sorted(p.lower()))\n        grupos.setdefault(clave, []).append(p)\n    return list(grupos.values())\n\nprint(agrupar_anagramas(["eat","tea","tan","ate","nat","bat"]))`,
         output: `[['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]`,
+        outputExplanation: `Counter compara la frecuencia de letras; las palabras con las mismas letras se agrupan bajo la misma clave ordenada.`,
       },
       {
         id: 'py-anag-3',
@@ -602,6 +658,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Agrupar anagramas estilo LeetCode\nfrom collections import defaultdict\n\ndef agrupar_anagramas(strs):\n    grupos = defaultdict(list)\n    for s in strs:\n        clave = "".join(sorted(s))\n        grupos[clave].append(s)\n    return list(grupos.values())\n\nresultado = agrupar_anagramas(["eat","tea","tan","ate","nat","bat"])\nfor grupo in resultado:\n    print(grupo)`,
         output: `['eat', 'tea', 'ate']\n['tan', 'nat']\n['bat']`,
+        outputExplanation: `Cada palabra se agrupa según sus letras ordenadas como clave, uniendo los anagramas entre sí.`,
       },
     ],
   },
@@ -617,6 +674,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         explanation: 'Búsqueda binaria divide el espacio a la mitad en cada paso.',
         code: `def busqueda_binaria(arr, target):\n    izq, der = 0, len(arr) - 1\n    while izq <= der:\n        mid = (izq + der) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            izq = mid + 1\n        else:\n            der = mid - 1\n    return -1\n\nprint(busqueda_binaria([1,3,5,7,9], 5))`,
         output: `2`,
+        outputExplanation: `El valor 5 está en el índice 2 del arreglo ordenado [1,3,5,7,9].`,
       },
       {
         id: 'py-binsearch-2',
@@ -625,6 +683,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Búsqueda binaria recursiva\ndef buscar(arr, target, izq=0, der=None):\n    if der is None:\n        der = len(arr) - 1\n    if izq > der:\n        return -1\n    mid = (izq + der) // 2\n    if arr[mid] == target:\n        return mid\n    elif arr[mid] < target:\n        return buscar(arr, target, mid + 1, der)\n    else:\n        return buscar(arr, target, izq, mid - 1)\n\nprint(buscar([2, 4, 6, 8, 10, 12], 8))`,
         output: `3`,
+        outputExplanation: `La versión recursiva encuentra el 8 en el índice 3, igual que lo haría la iterativa.`,
       },
       {
         id: 'py-binsearch-3',
@@ -633,6 +692,7 @@ export const PYTHON_CONCEPTS: Concept[] = [
         difficulty: 'Avanzado',
         code: `# Buscar punto de inserción (bisect)\nimport bisect\n\ndef insertar_ordenado(arr, val):\n    pos = bisect.bisect_left(arr, val)\n    arr.insert(pos, val)\n    return arr\n\nnumeros = [1, 3, 5, 7, 9]\nprint(insertar_ordenado(numeros, 4))\nprint(insertar_ordenado(numeros, 6))`,
         output: `[1, 3, 4, 5, 7, 9]\n[1, 3, 4, 5, 6, 7, 9]`,
+        outputExplanation: `bisect_left encuentra dónde insertar cada valor manteniendo el arreglo ordenado.`,
       },
     ],
   },
