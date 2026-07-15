@@ -48,6 +48,7 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
 
   const snippet = snippets[snippetIdx];
   const displayRef = useRef<HTMLDivElement>(null);
+  const hiddenInputRef = useRef<HTMLInputElement>(null);
 
   const code = useMemo(() => stripComments(snippet.code, language), [snippet.code, language]);
 
@@ -95,6 +96,15 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
+
+  // Mantiene enfocado el input oculto: es lo que le indica al navegador
+  // móvil que debe mostrar el teclado virtual. Sin un elemento enfocable
+  // no hay forma de invocarlo en celulares/tablets.
+  useEffect(() => {
+    hiddenInputRef.current?.focus({ preventScroll: true });
+  }, [snippetIdx, mode, finished]);
+
+  const focusHiddenInput = () => hiddenInputRef.current?.focus({ preventScroll: true });
 
   // Scroll del cursor a la vista
   useEffect(() => {
@@ -242,8 +252,24 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
                 <RotateCw className="w-3.5 h-3.5" />
               </Button>
             </div>
+            {/* Input oculto: enfocarlo es lo único que abre el teclado virtual en móvil */}
+            <input
+              ref={hiddenInputRef}
+              onChange={() => { }}
+              value=""
+              className="sr-only"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              inputMode="text"
+              tabIndex={-1}
+              aria-label="Área de escritura"
+            />
             <div ref={displayRef}
-              className={`p-3 sm:p-6 font-mono whitespace-pre overflow-x-auto select-none transition-all ${finished ? 'min-h-[340px] sm:min-h-[380px]' : 'min-h-[120px] sm:min-h-[160px]'
+              onClick={focusHiddenInput}
+              onTouchStart={focusHiddenInput}
+              className={`p-3 sm:p-6 font-mono whitespace-pre overflow-x-auto select-none transition-all cursor-text ${finished ? 'min-h-[340px] sm:min-h-[380px]' : 'min-h-[120px] sm:min-h-[160px]'
                 }`}
               style={{ background: '#1a1714', fontSize: `${SIZE_PX[editorSize]}px`, lineHeight: `${Math.round(SIZE_PX[editorSize] * 1.8)}px` }}>
               {chars.map((ch, i) => {

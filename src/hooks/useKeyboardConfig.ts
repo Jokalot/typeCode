@@ -49,13 +49,23 @@ function loadLocal(): KeyBinding[] {
     catch { return []; }
 }
 
+// Dispositivo táctil sin puntero de precisión (celular/tablet) — no tiene
+// teclado físico que mapear, así que el wizard de configuración no aplica.
+function isTouchOnlyDevice(): boolean {
+    if (typeof window === 'undefined' || !window.matchMedia) return false;
+    return window.matchMedia('(pointer: coarse)').matches
+        && window.matchMedia('(hover: none)').matches;
+}
+
 function loadConfiguredLocal(): boolean | null {
     if (typeof window === 'undefined') return null;
     const val = localStorage.getItem(CONFIGURED_KEY);
     if (val === null) {
         // Fallback: si hay bindings guardados, está configurado
         const bindings = loadLocal();
-        return bindings.length > 0 ? true : null;
+        if (bindings.length > 0) return true;
+        // En móvil/tablet no hay teclado físico que configurar
+        return isTouchOnlyDevice() ? true : null;
     }
     return val === 'true';
 }

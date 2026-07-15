@@ -59,6 +59,11 @@ export function Header() {
 
           {/* Mobile */}
           <div className="md:hidden flex items-center gap-2">
+            <Link href="/achievements">
+              <Button variant="ghost" size="sm">
+                <Award className="w-4 h-4" />
+              </Button>
+            </Link>
             <Link href="/settings">
               <Button variant="ghost" size="sm">
                 <Settings className="w-4 h-4" />
