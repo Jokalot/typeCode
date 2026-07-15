@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { ChevronLeft, ChevronRight, Trophy, Lightbulb, ArrowRight, ArrowLeft, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Trophy, ArrowRight, ArrowLeft, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { StatsSection } from '@/components/StatsSection';
 import { TypingPractice } from '@/components/TypingPractice';
@@ -149,20 +149,6 @@ export function PracticeClient({ language }: Props) {
         <ChevronRight className="w-3 h-3" />
         <span className="text-foreground font-medium">Ejercicio {active.exerciseNumber}</span>
       </div>
-
-      {snippet.explanation && (
-        <div
-          className="mb-4 px-4 py-3 rounded-xl text-sm"
-          style={{
-            background: `${language.accentColor}08`,
-            border: `1px solid ${language.accentColor}20`,
-            color: 'var(--foreground)',
-          }}
-        >
-          <span className="font-medium" style={{ color: language.accentColor }}><Lightbulb className="w-3.5 h-3.5 inline-block mr-1" style={{ color: language.accentColor }} /></span>
-          {snippet.explanation}
-        </div>
-      )}
 
       <TypingPractice
         snippets={[snippet]}
