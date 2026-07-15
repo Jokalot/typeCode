@@ -31,12 +31,14 @@ export function useTypingEngine({ code, mode, timeLimit, onFinish }: Options) {
     const charStatesRef = useRef(charStates);
     const errorsRef = useRef(errors);
     const totalTypedRef = useRef(totalTyped);
+    const finishedRef = useRef(finished);
 
     // Mantén las refs sincronizadas para usarlas dentro de closures
     useEffect(() => { cursorRef.current = cursor; }, [cursor]);
     useEffect(() => { charStatesRef.current = charStates; }, [charStates]);
     useEffect(() => { errorsRef.current = errors; }, [errors]);
     useEffect(() => { totalTypedRef.current = totalTyped; }, [totalTyped]);
+    useEffect(() => { finishedRef.current = finished; }, [finished]);
 
     const accuracy = totalTyped > 0
         ? Math.round(((totalTyped - errors) / totalTyped) * 100)
@@ -136,39 +138,19 @@ export function useTypingEngine({ code, mode, timeLimit, onFinish }: Options) {
     // ── Limpieza al desmontar ──
     useEffect(() => () => clearTimers(), [clearTimers]);
 
-    // ── Handler principal de teclado ──
-    const handleKeyDown = useCallback((e: KeyboardEvent) => {
-        if (finished) return;
-
-        if (e.key === 'Tab' || e.key === 'Escape') {
-            e.preventDefault();
-            reset();
-            return;
-        }
-
-        if (e.key === 'Backspace') {
-            e.preventDefault();
-            const pos = cursorRef.current;
-            if (pos === 0) return;
-            setCharStates(prev => {
-                const next = [...prev];
-                next[pos - 1] = 'pending';
-                return next;
-            });
-            setCursor(pos - 1);
-            return;
-        }
-
-        const actual = e.key === 'Enter' ? '\n' : e.key;
+    // ── Procesa un carácter tipeado (teclado físico o virtual) ──
+    const handleChar = useCallback((actual: string) => {
+        if (finishedRef.current) return;
         if (actual.length !== 1 && actual !== '\n') return;
-        e.preventDefault();
+
+        const pos = cursorRef.current;
+        if (pos >= chars.length) return;
 
         if (!started) {
             setStarted(true);
             startTimers();
         }
 
-        const pos = cursorRef.current;
         const expected = chars[pos];
         const isCorrect = actual === expected;
 
@@ -186,7 +168,21 @@ export function useTypingEngine({ code, mode, timeLimit, onFinish }: Options) {
         cursorRef.current = nextPos;
 
         if (nextPos >= chars.length) endGame();
-    }, [finished, started, chars, startTimers, endGame, reset]);
+    }, [started, chars, startTimers, endGame]);
+
+    // ── Borra el último carácter tipeado ──
+    const handleBackspace = useCallback(() => {
+        if (finishedRef.current) return;
+        const pos = cursorRef.current;
+        if (pos === 0) return;
+        setCharStates(prev => {
+            const next = [...prev];
+            next[pos - 1] = 'pending';
+            return next;
+        });
+        setCursor(pos - 1);
+        cursorRef.current = pos - 1;
+    }, []);
 
     return {
         // Estado
@@ -201,7 +197,8 @@ export function useTypingEngine({ code, mode, timeLimit, onFinish }: Options) {
         started,
         finished,
         // Acciones
-        handleKeyDown,
+        handleChar,
+        handleBackspace,
         reset,
     };
 }

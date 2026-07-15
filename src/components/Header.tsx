@@ -11,15 +11,15 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <Code2 className="w-6 h-6 text-primary-foreground" />
+      <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
+        <div className="flex items-center justify-between gap-2">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
+              <Code2 className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
             </div>
-            <div>
-              <h1 className="text-xl leading-tight">CapiType</h1>
-              <p className="text-xs text-muted-foreground">Aprende a programar al ritmo de tus dedos</p>
+            <div className="min-w-0">
+              <h1 className="text-base sm:text-xl leading-tight truncate">CapiType</h1>
+              <p className="hidden sm:block text-xs text-muted-foreground">Aprende a programar al ritmo de tus dedos</p>
             </div>
           </Link>
 
@@ -58,24 +58,24 @@ export function Header() {
           </nav>
 
           {/* Mobile */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-0.5 flex-shrink-0">
             <Link href="/achievements">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="px-2">
                 <Award className="w-4 h-4" />
               </Button>
             </Link>
             <Link href="/settings">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="px-2">
                 <Settings className="w-4 h-4" />
               </Button>
             </Link>
             {!loading && (
               user ? (
-                <Button variant="ghost" size="sm" onClick={signOut}>
+                <Button variant="ghost" size="sm" onClick={signOut} className="px-2">
                   <LogOut className="w-4 h-4" />
                 </Button>
               ) : (
-                <Button size="sm" onClick={signInWithGoogle}>
+                <Button size="sm" onClick={signInWithGoogle} className="px-2.5">
                   <LogIn className="w-4 h-4" />
                 </Button>
               )

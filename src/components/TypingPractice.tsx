@@ -48,14 +48,15 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
 
   const snippet = snippets[snippetIdx];
   const displayRef = useRef<HTMLDivElement>(null);
-  const hiddenInputRef = useRef<HTMLInputElement>(null);
+  const hiddenInputRef = useRef<HTMLTextAreaElement>(null);
+  const inputBufferRef = useRef('');
 
   const code = useMemo(() => stripComments(snippet.code, language), [snippet.code, language]);
 
   const {
     charStates, cursor, errors, wpm,
     accuracy, progress, timeLeft,
-    started, finished, handleKeyDown, reset,
+    started, finished, handleChar, handleBackspace, reset,
   } = useTypingEngine({
     code,
     mode,
@@ -91,20 +92,56 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showInfoTooltip]);
 
-  // Adjunta el listener global de teclado
+  // Tab/Escape reinician el ejercicio (solo atajos de teclado físico)
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleKeyDown]);
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (finished) return;
+      if (e.key === 'Tab' || e.key === 'Escape') {
+        e.preventDefault();
+        reset();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [finished, reset]);
 
-  // Mantiene enfocado el input oculto: es lo que le indica al navegador
+  // Mantiene enfocado el textarea oculto: es lo que le indica al navegador
   // móvil que debe mostrar el teclado virtual. Sin un elemento enfocable
   // no hay forma de invocarlo en celulares/tablets.
   useEffect(() => {
+    inputBufferRef.current = '';
+    if (hiddenInputRef.current) hiddenInputRef.current.value = '';
     hiddenInputRef.current?.focus({ preventScroll: true });
   }, [snippetIdx, mode, finished]);
 
   const focusHiddenInput = () => hiddenInputRef.current?.focus({ preventScroll: true });
+
+  // Captura lo tipeado vía el evento `input` en lugar de `keydown`: los
+  // teclados virtuales de móvil (autocorrección, predicción) no siempre
+  // disparan keydown con la tecla correcta, pero el valor del textarea
+  // siempre refleja lo realmente escrito.
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    const prev = inputBufferRef.current;
+
+    if (value.length > prev.length && value.startsWith(prev)) {
+      for (const ch of value.slice(prev.length)) handleChar(ch);
+    } else if (value.length < prev.length && prev.startsWith(value)) {
+      for (let i = 0; i < prev.length - value.length; i++) handleBackspace();
+    } else if (value !== prev) {
+      // Reemplazo no lineal (autocorrección, selección) — recalcula desde cero
+      for (let i = 0; i < prev.length; i++) handleBackspace();
+      for (const ch of value) handleChar(ch);
+    }
+
+    // Evita que el buffer crezca sin límite en sesiones largas
+    if (value.length > 500) {
+      inputBufferRef.current = '';
+      e.target.value = '';
+    } else {
+      inputBufferRef.current = value;
+    }
+  };
 
   // Scroll del cursor a la vista
   useEffect(() => {
@@ -252,11 +289,12 @@ export function TypingPractice({ snippets, language, accentColor, onBack, onSess
                 <RotateCw className="w-3.5 h-3.5" />
               </Button>
             </div>
-            {/* Input oculto: enfocarlo es lo único que abre el teclado virtual en móvil */}
-            <input
+            {/* Textarea oculto: enfocarlo abre el teclado virtual en móvil, y su
+                evento onChange es la fuente real de lo tipeado (más confiable
+                que keydown con autocorrección/predicción de texto) */}
+            <textarea
               ref={hiddenInputRef}
-              onChange={() => { }}
-              value=""
+              onChange={handleTextareaChange}
               className="sr-only"
               autoComplete="off"
               autoCorrect="off"
